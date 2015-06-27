@@ -1,0 +1,1 @@
+﻿alert(mnemonicNumberImages[0]);

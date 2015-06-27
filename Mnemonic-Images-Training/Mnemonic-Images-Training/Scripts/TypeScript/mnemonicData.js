@@ -1,0 +1,286 @@
+"use strict";
+var mnemonicApp;
+(function (mnemonicApp) {
+    var mnemonicData = (function () {
+        function mnemonicData() {
+            this.mnemonicNumberImages = [
+                [["0"], ["Mask"]],
+                [["1"], ["Näsa"]],
+                [["2"], ["Hår"]],
+                [["3"], ["Bulle"]],
+                [["4"], ["Val"]],
+                [["5"], ["Räv"]],
+                [["6"], ["yXa"]],
+                [["7"], ["Dörr"]],
+                [["8"], ["Lök"]],
+                [["9"], ["Cykel"]],
+                [["10"], ["aNeMon"]],
+                [["11"], ["aNaNas"]],
+                [["12"], ["NöT"]],
+                [["13"], ["NuBbe"]],
+                [["14"], ["aNKare"]],
+                [["15"], ["NaRrmössa"]],
+                [["16"], ["NyPon"]],
+                [["17"], ["NyStan"]],
+                [["18"], ["NaGel"]],
+                [["19"], ["NyCkel"]],
+                [["20"], ["HuMla"]],
+                [["21"], ["HaNd"]],
+                [["22"], ["HaTt"]],
+                [["23"], ["TaBlett"]],
+                [["24"], ["TV"]],
+                [["25"], ["HaRe"]],
+                [["26"], ["TuPp"]],
+                [["27"], ["HyDda"]],
+                [["28"], ["HaLm"]],
+                [["29"], ["TaCo"]],
+                [["30"], ["BoM"]],
+                [["31"], ["BeN (skelett)"]],
+                [["32"], ["BåT"]],
+                [["33"], ["BeBis"]],
+                [["34"], ["BoK"]],
+                [["35"], ["BåR"]],
+                [["36"], ["BoJ"]],
+                [["37"], ["BaDkar"]],
+                [["38"], ["BiL"]],
+                [["39"], ["(jul-)BoCk"]],
+                [["40"], ["KiMono"]],
+                [["41"], ["KaNtarell"]],
+                [["42"], ["VaTtenmelon"]],
+                [["43"], ["KaBel"]],
+                [["44"], ["KiWi"]],
+                [["45"], ["Krita"]],
+                [["46"], ["KeX"]],
+                [["47"], ["VaS"]],
+                [["48"], ["VåG"]],
+                [["49"], ["KoCkmössa"]],
+                [["50"], ["RoM"]],
+                [["51"], ["RuNsten"]],
+                [["52"], ["FoT"]],
+                [["53"], ["RaBarber"]],
+                [["54"], ["Raket (nyårs-)"]],
+                [["55"], ["FåR"]],
+                [["56"], ["RiPa"]],
+                [["57"], ["RaDio"]],
+                [["58"], ["FiLm-rulle"]],
+                [["59"], ["RaCket"]],
+                [["60"], ["PuMa"]],
+                [["61"], ["JeaNs"]],
+                [["62"], ["PiZza"]],
+                [["63"], ["JoBbarhjälm"]],
+                [["64"], ["JuKebox"]],
+                [["65"], ["JoRdglob"]],
+                [["66"], ["PaPaya"]],
+                [["67"], ["PiStol"]],
+                [["68"], ["PaLm"]],
+                [["69"], ["JuiCepaket"]],
+                [["70"], ["DoMino"]],
+                [["71"], ["DiNosaurie"]],
+                [["72"], ["Shorts"]],
+                [["73"], ["DuBb-däck"]],
+                [["74"], ["DyKare"]],
+                [["75"], ["Drake"]],
+                [["76"], ["Spindel"]],
+                [["77"], ["DoSa"]],
+                [["78"], ["SåG"]],
+                [["79"], ["SäCk"]],
+                [["80"], ["GeM"]],
+                [["81"], ["LöNnlöv"]],
+                [["82"], ["LaTte"]],
+                [["83"], ["eLBas"]],
+                [["84"], ["oLiV"]],
+                [["85"], ["GaRdin"]],
+                [["86"], ["LeoPardmjukisdjur"]],
+                [["87"], ["GåS"]],
+                [["88"], ["GaLge"]],
+                [["89"], ["LoCktång"]],
+                [["90"], ["CyMbal"]],
+                [["91"], ["CoNtainer"]],
+                [["92"], ["CiTronskiva"]],
+                [["93"], ["CaBriolet"]],
+                [["94"], ["CyKlopöga"]],
+                [["95"], ["CeRat"]],
+                [["96"], ["CaPotasto"]],
+                [["97"], ["CD-skiva"]],
+                [["98"], ["CyLinder"]],
+                [["99"], ["CoCktail"]]
+            ];
+            this.mnemonicMonthImages = [
+                [["Januari"], ["Nyårssmällare"]],
+                [["Februari"], ["Hjärta"]],
+                [["Mars"], ["Ägg"]],
+                [["April"], ["Vattendroppe"]],
+                [["Maj"], ["Majblomma"]],
+                [["Juni"], ["Midsommarstång"]],
+                [["Juli"], ["Badbrygga"]],
+                [["Augusti"], ["Kräftskivehatt"]],
+                [["September"], ["Linjal"]],
+                [["Oktober"], ["Istapp"]],
+                [["November"], ["Snögubbe"]],
+                [["December"], ["Julklapp"]]
+            ];
+            this.mnemonicDaysImages = [
+                [["MåNdag"], ["MoNitor"]],
+                [["TiSdag"], ["TiStel"]],
+                [["oNSdag"], ["iNSekt"]],
+                [["ToRsdag"], ["ToRped (ubåts-)"]],
+                [["FRedag"], ["Fredssymbol på halsband"]],
+                [["LöRdag"], ["LeRkruka"]],
+                [["SöNdag"], ["SaNdslott"]]
+            ];
+            this.mnemonicAlphabetImages = [
+                [["A"], ["Ark"]],
+                [["B"], ["Buddha"]],
+                [["C"], ["Chokladtårta"]],
+                [["D"], ["Diskett"]],
+                [["E"], ["Ek"]],
+                [["F"], ["Fiskedrag"]],
+                [["G"], ["Gris"]],
+                [["H"], ["Hallon"]],
+                [["I"], ["Iller"]],
+                [["J"], ["Jordgubbe"]],
+                [["K"], ["Kudde"]],
+                [["L"], ["Limehalva"]],
+                [["M"], ["Mullvad"]],
+                [["N"], ["Nagelfil"]],
+                [["O"], ["Orm"]],
+                [["P"], ["Pyramid"]],
+                [["Q"], ["Quinoa"]],
+                [["R"], ["Rissäck"]],
+                [["S"], ["Skoter"]],
+                [["T"], ["Tornado"]],
+                [["U"], ["Uniform"]],
+                [["V"], ["Vanlijstång"]],
+                [["W"], ["Wokpanna"]],
+                [["X"], ["Xylofon"]],
+                [["Y"], ["Yoghurt"]],
+                [["Z"], ["Zombie"]],
+                [["Å"], ["Ål"]],
+                [["Ä"], ["Älghorn"]],
+                [["Ö"], ["Öronskydd"]]
+            ];
+        }
+        mnemonicData.prototype.checkRange = function (begin, end, lenght) {
+            if (begin < 0) {
+                throw new RangeError("\"begin: number\" must be more than zero!");
+            }
+            if (!end) {
+                throw new RangeError("\"end: number\" must be more than zero when using \"begin: number\"!");
+            }
+            ;
+            if (begin > end) {
+                throw new RangeError("\"end: number\" must be greater than \"begin: number\"!");
+            }
+            ;
+            if (end > (lenght - 1)) {
+                throw new RangeError("Out of range (\"begin\" - \"end\" > " + (lenght - 1) + ") !");
+            }
+            ;
+        };
+        mnemonicData.prototype.pushArray = function (begin, end, source) {
+            var straightArray = [];
+            for (var i = begin; i <= end; i++) {
+                straightArray.push(source[i]);
+            }
+            return straightArray;
+        };
+        // From http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+        mnemonicData.prototype.shuffleArray = function (array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+            return array;
+        };
+        mnemonicData.prototype.getAlphabetImages = function (begin, end, random) {
+            if (!begin && !end) {
+                return this.mnemonicAlphabetImages;
+            }
+            else {
+                this.checkRange(begin, end, this.mnemonicAlphabetImages.length);
+            }
+            ;
+            if (begin || end) {
+                var straightArray = this.pushArray(begin, end, this.mnemonicAlphabetImages);
+            }
+            if (!random) {
+                return straightArray;
+            }
+            ;
+            if (random) {
+                return this.shuffleArray(straightArray);
+            }
+            ;
+        };
+        mnemonicData.prototype.getDaysImages = function (begin, end, random) {
+            if (!begin && !end) {
+                return this.mnemonicDaysImages;
+            }
+            else {
+                this.checkRange(begin, end, this.mnemonicDaysImages.length);
+            }
+            ;
+            if (begin || end) {
+                var straightArray = this.pushArray(begin, end, this.mnemonicDaysImages);
+            }
+            if (!random) {
+                return straightArray;
+            }
+            ;
+            if (random) {
+                return this.shuffleArray(straightArray);
+            }
+            ;
+        };
+        mnemonicData.prototype.getMonthsImages = function (begin, end, random) {
+            if (!begin && !end) {
+                return this.mnemonicMonthImages;
+            }
+            else {
+                this.checkRange(begin, end, this.mnemonicMonthImages.length);
+            }
+            ;
+            if (begin || end) {
+                var straightArray = this.pushArray(begin, end, this.mnemonicMonthImages);
+            }
+            if (!random) {
+                return straightArray;
+            }
+            ;
+            if (random) {
+                return this.shuffleArray(straightArray);
+            }
+            ;
+        };
+        mnemonicData.prototype.getNumberImages = function (begin, end, random) {
+            if (!begin && !end) {
+                return this.mnemonicNumberImages;
+            }
+            else {
+                this.checkRange(begin, end, this.mnemonicNumberImages.length);
+            }
+            ;
+            if (begin || end) {
+                var straightArray = this.pushArray(begin, end, this.mnemonicNumberImages);
+            }
+            if (!random) {
+                return straightArray;
+            }
+            ;
+            if (random) {
+                return this.shuffleArray(straightArray);
+            }
+            ;
+        };
+        return mnemonicData;
+    })();
+    mnemonicApp.mnemonicData = mnemonicData;
+})(mnemonicApp || (mnemonicApp = {}));
+//# sourceMappingURL=mnemonicData.js.map
