@@ -177,12 +177,11 @@ var mnemonicApp;
             }
             ;
         };
+        // A big thank you to Anton K. Andersson http://antonkandersson.se/ for teaching me the following code
         mnemonicData.prototype.pushArray = function (begin, end, source) {
-            var straightArray = [];
-            for (var i = begin; i <= end; i++) {
-                straightArray.push(source[i]);
-            }
-            return straightArray;
+            return source.filter(function (element, index, array) {
+                return index > begin && index < end;
+            });
         };
         // From http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
         mnemonicData.prototype.shuffleArray = function (array) {

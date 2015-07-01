@@ -1,3 +1,4 @@
+/// <reference path="../typings/jquery/jquery.d.ts" />
 "use strict";
 var mnemonicApp;
 (function (mnemonicApp) {
@@ -37,8 +38,12 @@ var mnemonicApp;
     })();
     mnemonicApp.mnemonic = mnemonic;
 })(mnemonicApp || (mnemonicApp = {}));
-window.onload = function () {
-    var temp = new mnemonicApp.mnemonic;
-    temp.init();
-};
+//window.onload = function () {
+//    var temp: mnemonicApp.mnemonic = new mnemonicApp.mnemonic;
+//    temp.init();
+//}
+//$(document).ready(function () {
+//    var temp: mnemonicApp.mnemonic = new mnemonicApp.mnemonic;
+//    temp.init();
+//}); 
 //# sourceMappingURL=mnemonic.js.map

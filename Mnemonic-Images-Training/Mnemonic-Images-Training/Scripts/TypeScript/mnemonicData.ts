@@ -181,14 +181,11 @@ module mnemonicApp {
             };
         }
 
+        // A big thank you to Anton K. Andersson http://antonkandersson.se/ for teaching me the following code
         private pushArray(begin: number, end: number, source: string[][][]) {
-            var straightArray: string[][][] = [];
-
-            for (var i: number = begin; i <= end; i++) {
-                straightArray.push(source[i]);
-            }
-
-            return straightArray;
+            return source.filter(function (element, index, array) {
+                return index > begin && index < end;
+            });
         }
 
         // From http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array

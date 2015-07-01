@@ -1,4 +1,6 @@
-﻿"use strict";
+﻿/// <reference path="../typings/jquery/jquery.d.ts" />
+
+"use strict";
 
 module mnemonicApp {
     export class mnemonic {
@@ -36,7 +38,12 @@ module mnemonicApp {
     }
 }
 
-window.onload = function () {
-    var temp: mnemonicApp.mnemonic = new mnemonicApp.mnemonic;
-    temp.init();
-}
+//window.onload = function () {
+//    var temp: mnemonicApp.mnemonic = new mnemonicApp.mnemonic;
+//    temp.init();
+//}
+
+//$(document).ready(function () {
+//    var temp: mnemonicApp.mnemonic = new mnemonicApp.mnemonic;
+//    temp.init();
+//});
