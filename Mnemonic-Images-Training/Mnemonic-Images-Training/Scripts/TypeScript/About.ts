@@ -19,8 +19,13 @@ module mnemonicApp {
 
         init() {
             try {
+                console.log(this);
+                var that: About = this
+                $.get('../../Templates/about.template', function (template: string) {
+                    that.renderContent(template, that.main);
+                });
+
                 this.main.empty();
-                this.main.append(this.presentation);
                 if (this.lead.is(":empty")) {
                     this.lead.append(this.leadText);
                 };
@@ -28,6 +33,11 @@ module mnemonicApp {
             } catch (e) {
                 console.log("An error occurred: " + e.message);
             };
+        }
+
+        private renderContent = (template: string, main: JQuery) => {
+            var rendered: string = Mustache.render(template, null);
+            main.append(rendered);
         }
     }
 } 

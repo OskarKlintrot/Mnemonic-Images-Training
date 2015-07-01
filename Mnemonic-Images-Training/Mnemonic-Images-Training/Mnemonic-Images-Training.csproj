@@ -94,6 +94,7 @@
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <Content Include="Scripts\Routing.js" />
     <Content Include="web.config" />
+    <None Include="Templates\about.template" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
