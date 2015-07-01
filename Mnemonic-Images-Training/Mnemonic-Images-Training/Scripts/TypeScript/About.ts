@@ -21,7 +21,7 @@ module mnemonicApp {
             try {
                 console.log(this);
                 var that: About = this;
-                $.get('/Templates/about.template', function (template: string) {
+                $.get('../../Templates/about.template', function (template: string) {
                     that.renderContent(template, that.main);
                 });
 
