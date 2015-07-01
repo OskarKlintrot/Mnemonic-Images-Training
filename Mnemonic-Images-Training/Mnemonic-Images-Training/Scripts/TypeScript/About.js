@@ -18,7 +18,7 @@ var mnemonicApp;
             try {
                 console.log(this);
                 var that = this;
-                $.get('../../Templates/about.template', function (template) {
+                $.get('/Templates/about.template', function (template) {
                     that.renderContent(template, that.main);
                 });
                 this.main.empty();
