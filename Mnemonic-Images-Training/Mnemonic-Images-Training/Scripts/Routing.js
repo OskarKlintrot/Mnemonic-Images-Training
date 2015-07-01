@@ -4,6 +4,8 @@ window.onload = function () {
     var temp = new mnemonicApp.mnemonic;
     temp.init();
 
+    var lead = $("p.lead").html();
+
     if ("onhashchange" in window) {
         console.log("The browser supports the hashchange event!");
     }
@@ -26,7 +28,7 @@ window.onload = function () {
             months.init();
         }
         if (location.hash === "#about") {
-            var about = new mnemonicApp.About;
+            var about = new mnemonicApp.About(lead);
             about.init();
         }
     }

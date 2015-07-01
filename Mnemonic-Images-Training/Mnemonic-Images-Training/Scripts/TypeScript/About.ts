@@ -10,11 +10,11 @@ module mnemonicApp {
         private lead: JQuery;
         private leadText: any[];
 
-        constructor() {
+        constructor(leadText: string) {
             this.main = $("main");
             this.lead = $("p.lead");
             this.presentation = $.parseHTML("<p>Den här sidan är skapad av <a href=\"https://github.com/OskarKlintrot\">Oskar Klintrot</a>.</p>");
-            this.leadText = $.parseHTML("Figurkodsträning a lá <a href=\"http://www.themindacademy.se\">mindacademy.se</a>");
+            this.leadText = $.parseHTML(leadText);
         }
 
         init() {
