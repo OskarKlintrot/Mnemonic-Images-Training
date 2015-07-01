@@ -20,7 +20,7 @@ module mnemonicApp {
         init() {
             try {
                 console.log(this);
-                var that: About = this
+                var that: About = this;
                 $.get('../../Templates/about.template', function (template: string) {
                     that.renderContent(template, that.main);
                 });
