@@ -13,13 +13,11 @@ module mnemonicApp {
         constructor(leadText: string) {
             this.main = $("main");
             this.lead = $("p.lead");
-            this.presentation = $.parseHTML("<p>Den här sidan är skapad av <a href=\"https://github.com/OskarKlintrot\">Oskar Klintrot</a>.</p>");
             this.leadText = $.parseHTML(leadText);
         }
 
         init() {
             try {
-                console.log(this);
                 var that: About = this;
                 $.get('../../Templates/about.template', function (template: string) {
                     that.renderContent(template, that.main);

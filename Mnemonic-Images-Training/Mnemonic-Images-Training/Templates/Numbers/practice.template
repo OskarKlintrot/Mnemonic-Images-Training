@@ -1,0 +1,9 @@
+﻿<div class="text-center">
+    <h2>
+        <span id="Number" class="label label-primary col-md-3">{{ Number }}</span>
+        <span class="col-md-1"> </span>
+        <span id="MnemomicImage" class="label label-primary col-md-3">{{ MnemomicImage }}</span>
+        <span class="col-md-1"> </span>
+        <span id="Timer" class="label label-primary col-md-3">00:10</span>
+    </h2>
+</div>

@@ -4,166 +4,166 @@ module mnemonicApp {
     export class mnemonicData {
         private mnemonicNumberImages =
         [
-            [ [ "0"  ], [ "Mask" ] ],
-            [ [ "1"  ], [ "Näsa" ] ],
-            [ [ "2"  ], [ "Hår" ] ],
-            [ [ "3"  ], [ "Bulle" ] ],
-            [ [ "4"  ], [ "Val" ] ],
-            [ [ "5"  ], [ "Räv" ] ],
-            [ [ "6"  ], [ "yXa" ] ],
-            [ [ "7"  ], [ "Dörr" ] ],
-            [ [ "8"  ], [ "Lök" ] ],
-            [ [ "9"  ], [ "Cykel" ] ],
-            [ [ "10" ], [ "aNeMon" ] ],
-            [ [ "11" ], [ "aNaNas" ] ],
-            [ [ "12" ], [ "NöT" ] ],
-            [ [ "13" ], [ "NuBbe" ] ],
-            [ [ "14" ], [ "aNKare" ] ],
-            [ [ "15" ], [ "NaRrmössa" ] ],
-            [ [ "16" ], [ "NyPon" ] ],
-            [ [ "17" ], [ "NyStan" ] ],
-            [ [ "18" ], [ "NaGel" ] ],
-            [ [ "19" ], [ "NyCkel" ] ],
-            [ [ "20" ], [ "HuMla" ] ],
-            [ [ "21" ], [ "HaNd" ] ],
-            [ [ "22" ], [ "HaTt" ] ],
-            [ [ "23" ], [ "TaBlett" ] ],
-            [ [ "24" ], [ "TV" ] ],
-            [ [ "25" ], [ "HaRe" ] ],
-            [ [ "26" ], [ "TuPp" ] ],
-            [ [ "27" ], [ "HyDda" ] ],
-            [ [ "28" ], [ "HaLm" ] ],
-            [ [ "29" ], [ "TaCo" ] ],
-            [ [ "30" ], [ "BoM" ] ],
-            [ [ "31" ], [ "BeN (skelett)" ] ],
-            [ [ "32" ], [ "BåT" ] ],
-            [ [ "33" ], [ "BeBis" ] ],
-            [ [ "34" ], [ "BoK" ] ],
-            [ [ "35" ], [ "BåR" ] ],
-            [ [ "36" ], [ "BoJ" ] ],
-            [ [ "37" ], [ "BaDkar" ] ],
-            [ [ "38" ], [ "BiL" ] ],
-            [ [ "39" ], [ "(jul-)BoCk" ] ],
-            [ [ "40" ], [ "KiMono" ] ],
-            [ [ "41" ], [ "KaNtarell" ] ],
-            [ [ "42" ], [ "VaTtenmelon" ] ],
-            [ [ "43" ], [ "KaBel" ] ],
-            [ [ "44" ], [ "KiWi" ] ],
-            [ [ "45" ], [ "Krita" ] ],
-            [ [ "46" ], [ "KeX" ] ],
-            [ [ "47" ], [ "VaS" ] ],
-            [ [ "48" ], [ "VåG" ] ],
-            [ [ "49" ], [ "KoCkmössa" ] ],
-            [ [ "50" ], [ "RoM" ] ],
-            [ [ "51" ], [ "RuNsten" ] ],
-            [ [ "52" ], [ "FoT" ] ],
-            [ [ "53" ], [ "RaBarber" ] ],
-            [ [ "54" ], [ "Raket (nyårs-)" ] ],
-            [ [ "55" ], [ "FåR" ] ],
-            [ [ "56" ], [ "RiPa" ] ],
-            [ [ "57" ], [ "RaDio" ] ],
-            [ [ "58" ], [ "FiLm-rulle" ] ],
-            [ [ "59" ], [ "RaCket" ] ],
-            [ [ "60" ], [ "PuMa" ] ],
-            [ [ "61" ], [ "JeaNs" ] ],
-            [ [ "62" ], [ "PiZza" ] ],
-            [ [ "63" ], [ "JoBbarhjälm" ] ],
-            [ [ "64" ], [ "JuKebox" ] ],
-            [ [ "65" ], [ "JoRdglob" ] ],
-            [ [ "66" ], [ "PaPaya" ] ],
-            [ [ "67" ], [ "PiStol" ] ],
-            [ [ "68" ], [ "PaLm" ] ],
-            [ [ "69" ], [ "JuiCepaket" ] ],
-            [ [ "70" ], [ "DoMino" ] ],
-            [ [ "71" ], [ "DiNosaurie" ] ],
-            [ [ "72" ], [ "Shorts" ] ],
-            [ [ "73" ], [ "DuBb-däck" ] ],
-            [ [ "74" ], [ "DyKare" ] ],
-            [ [ "75" ], [ "Drake" ] ],
-            [ [ "76" ], [ "Spindel" ] ],
-            [ [ "77" ], [ "DoSa" ] ],
-            [ [ "78" ], [ "SåG" ] ],
-            [ [ "79" ], [ "SäCk" ] ],
-            [ [ "80" ], [ "GeM" ] ],
-            [ [ "81" ], [ "LöNnlöv" ] ],
-            [ [ "82" ], [ "LaTte" ] ],
-            [ [ "83" ], [ "eLBas" ] ],
-            [ [ "84" ], [ "oLiV" ] ],
-            [ [ "85" ], [ "GaRdin" ] ],
-            [ [ "86" ], [ "LeoPardmjukisdjur" ] ],
-            [ [ "87" ], [ "GåS" ] ],
-            [ [ "88" ], [ "GaLge" ] ],
-            [ [ "89" ], [ "LoCktång" ] ],
-            [ [ "90" ], [ "CyMbal" ] ],
-            [ [ "91" ], [ "CoNtainer" ] ],
-            [ [ "92" ], [ "CiTronskiva" ] ],
-            [ [ "93" ], [ "CaBriolet" ] ],
-            [ [ "94" ], [ "CyKlopöga" ] ],
-            [ [ "95" ], [ "CeRat" ] ],
-            [ [ "96" ], [ "CaPotasto" ] ],
-            [ [ "97" ], [ "CD-skiva" ] ],
-            [ [ "98" ], [ "CyLinder" ] ],
-            [ [ "99" ], [ "CoCktail" ] ]
+            [ "0"  , "Mask" ],
+            [ "1"  , "Näsa" ],
+            [ "2"  , "Hår" ],
+            [ "3"  , "Bulle" ],
+            [ "4"  , "Val" ],
+            [ "5"  , "Räv" ],
+            [ "6"  , "yXa" ],
+            [ "7"  , "Dörr" ],
+            [ "8"  , "Lök" ],
+            [ "9"  , "Cykel" ],
+            [ "10" , "aNeMon" ],
+            [ "11" , "aNaNas" ],
+            [ "12" , "NöT" ],
+            [ "13" , "NuBbe" ],
+            [ "14" , "aNKare" ],
+            [ "15" , "NaRrmössa" ],
+            [ "16" , "NyPon" ],
+            [ "17" , "NyStan" ],
+            [ "18" , "NaGel" ],
+            [ "19" , "NyCkel" ],
+            [ "20" , "HuMla" ],
+            [ "21" , "HaNd" ],
+            [ "22" , "HaTt" ],
+            [ "23" , "TaBlett" ],
+            [ "24" , "TV" ],
+            [ "25" , "HaRe" ],
+            [ "26" , "TuPp" ],
+            [ "27" , "HyDda" ],
+            [ "28" , "HaLm" ],
+            [ "29" , "TaCo" ],
+            [ "30" , "BoM" ],
+            [ "31" , "BeN (skelett)" ],
+            [ "32" , "BåT" ],
+            [ "33" , "BeBis" ],
+            [ "34" , "BoK" ],
+            [ "35" , "BåR" ],
+            [ "36" , "BoJ" ],
+            [ "37" , "BaDkar" ],
+            [ "38" , "BiL" ],
+            [ "39" , "(jul-)BoCk" ],
+            [ "40" , "KiMono" ],
+            [ "41" , "KaNtarell" ],
+            [ "42" , "VaTtenmelon" ],
+            [ "43" , "KaBel" ],
+            [ "44" , "KiWi" ],
+            [ "45" , "Krita" ],
+            [ "46" , "KeX" ],
+            [ "47" , "VaS" ],
+            [ "48" , "VåG" ],
+            [ "49" , "KoCkmössa" ],
+            [ "50" , "RoM" ],
+            [ "51" , "RuNsten" ],
+            [ "52" , "FoT" ],
+            [ "53" , "RaBarber" ],
+            [ "54" , "Raket (nyårs-)" ],
+            [ "55" , "FåR" ],
+            [ "56" , "RiPa" ],
+            [ "57" , "RaDio" ],
+            [ "58" , "FiLm-rulle" ],
+            [ "59" , "RaCket" ],
+            [ "60" , "PuMa" ],
+            [ "61" , "JeaNs" ],
+            [ "62" , "PiZza" ],
+            [ "63" , "JoBbarhjälm" ],
+            [ "64" , "JuKebox" ],
+            [ "65" , "JoRdglob" ],
+            [ "66" , "PaPaya" ],
+            [ "67" , "PiStol" ],
+            [ "68" , "PaLm" ],
+            [ "69" , "JuiCepaket" ],
+            [ "70" , "DoMino" ],
+            [ "71" , "DiNosaurie" ],
+            [ "72" , "Shorts" ],
+            [ "73" , "DuBb-däck" ],
+            [ "74" , "DyKare" ],
+            [ "75" , "Drake" ],
+            [ "76" , "Spindel" ],
+            [ "77" , "DoSa" ],
+            [ "78" , "SåG" ],
+            [ "79" , "SäCk" ],
+            [ "80" , "GeM" ],
+            [ "81" , "LöNnlöv" ],
+            [ "82" , "LaTte" ],
+            [ "83" , "eLBas" ],
+            [ "84" , "oLiV" ],
+            [ "85" , "GaRdin" ],
+            [ "86" , "LeoPardmjukisdjur" ],
+            [ "87" , "GåS" ],
+            [ "88" , "GaLge" ],
+            [ "89" , "LoCktång" ],
+            [ "90" , "CyMbal" ],
+            [ "91" , "CoNtainer" ],
+            [ "92" , "CiTronskiva" ],
+            [ "93" , "CaBriolet" ],
+            [ "94" , "CyKlopöga" ],
+            [ "95" , "CeRat" ],
+            [ "96" , "CaPotasto" ],
+            [ "97" , "CD-skiva" ],
+            [ "98" , "CyLinder" ],
+            [ "99" , "CoCktail" ]
         ];
 
         private mnemonicMonthImages =
         [
-            [ [ "Januari"], [ "Nyårssmällare" ] ],
-            [ [ "Februari"], [ "Hjärta" ] ],
-            [ [ "Mars"], [ "Ägg" ] ],
-            [ [ "April"], [ "Vattendroppe" ] ],
-            [ [ "Maj"], [ "Majblomma" ] ],
-            [ [ "Juni"], [ "Midsommarstång" ] ],
-            [ [ "Juli"], [ "Badbrygga" ] ],
-            [ [ "Augusti"], [ "Kräftskivehatt" ] ],
-            [ [ "September"], [ "Linjal" ] ],
-            [ [ "Oktober"], [ "Istapp" ] ],
-            [ [ "November"], [ "Snögubbe" ] ],
-            [ [ "December"], [ "Julklapp" ] ]
+            [ "Januari", "Nyårssmällare" ],
+            [ "Februari", "Hjärta" ],
+            [ "Mars", "Ägg" ],
+            [ "April", "Vattendroppe" ],
+            [ "Maj", "Majblomma" ],
+            [ "Juni", "Midsommarstång" ],
+            [ "Juli", "Badbrygga" ],
+            [ "Augusti", "Kräftskivehatt" ],
+            [ "September", "Linjal" ],
+            [ "Oktober", "Istapp" ],
+            [ "November", "Snögubbe" ],
+            [ "December", "Julklapp" ]
         ];
 
         private mnemonicDaysImages =
         [
-            [ ["MåNdag"], [ "MoNitor"] ],
-            [ ["TiSdag"], [ "TiStel"] ],
-            [ ["oNSdag"], [ "iNSekt"] ],
-            [ ["ToRsdag"], [ "ToRped (ubåts-)"] ],
-            [ ["FRedag"], [ "Fredssymbol på halsband"] ],
-            [ ["LöRdag"], [ "LeRkruka"] ],
-            [ ["SöNdag"], [ "SaNdslott"] ]
+            ["MåNdag", "MoNitor"],
+            ["TiSdag", "TiStel"],
+            ["oNSdag", "iNSekt"],
+            ["ToRsdag", "ToRped (ubåts-)"],
+            ["FRedag", "Fredssymbol på halsband"],
+            ["LöRdag", "LeRkruka"],
+            ["SöNdag", "SaNdslott"]
         ];
 
         private mnemonicAlphabetImages =
         [
-            [ ["A"], [ "Ark"] ],
-            [ ["B"], [ "Buddha"] ],
-            [ ["C"], [ "Chokladtårta"] ],
-            [ ["D"], [ "Diskett"] ],
-            [ ["E"], [ "Ek"] ],
-            [ ["F"], [ "Fiskedrag"] ],
-            [ ["G"], [ "Gris"] ],
-            [ ["H"], [ "Hallon"] ],
-            [ ["I"], [ "Iller"] ],
-            [ ["J"], [ "Jordgubbe"] ],
-            [ ["K"], [ "Kudde"] ],
-            [ ["L"], [ "Limehalva"] ],
-            [ ["M"], [ "Mullvad"] ],
-            [ ["N"], [ "Nagelfil"] ],
-            [ ["O"], [ "Orm"] ],
-            [ ["P"], [ "Pyramid"] ],
-            [ ["Q"], [ "Quinoa"] ],
-            [ ["R"], [ "Rissäck"] ],
-            [ ["S"], [ "Skoter"] ],
-            [ ["T"], [ "Tornado"] ],
-            [ ["U"], [ "Uniform"] ],
-            [ ["V"], [ "Vanlijstång"] ],
-            [ ["W"], [ "Wokpanna"] ],
-            [ ["X"], [ "Xylofon"] ],
-            [ ["Y"], [ "Yoghurt"] ],
-            [ ["Z"], [ "Zombie"] ],
-            [ ["Å"], [ "Ål"] ],
-            [ ["Ä"], [ "Älghorn"] ],
-            [ ["Ö"], [ "Öronskydd"] ]
+            ["A", "Ark"],
+            ["B", "Buddha"],
+            ["C", "Chokladtårta"],
+            ["D", "Diskett"],
+            ["E", "Ek"],
+            ["F", "Fiskedrag"],
+            ["G", "Gris"],
+            ["H", "Hallon"],
+            ["I", "Iller"],
+            ["J", "Jordgubbe"],
+            ["K", "Kudde"],
+            ["L", "Limehalva"],
+            ["M", "Mullvad"],
+            ["N", "Nagelfil"],
+            ["O", "Orm"],
+            ["P", "Pyramid"],
+            ["Q", "Quinoa"],
+            ["R", "Rissäck"],
+            ["S", "Skoter"],
+            ["T", "Tornado"],
+            ["U", "Uniform"],
+            ["V", "Vanlijstång"],
+            ["W", "Wokpanna"],
+            ["X", "Xylofon"],
+            ["Y", "Yoghurt"],
+            ["Z", "Zombie"],
+            ["Å", "Ål"],
+            ["Ä", "Älghorn"],
+            ["Ö", "Öronskydd"]
         ];
 
         private checkRange(begin: number, end: number, lenght: number) {
@@ -181,15 +181,15 @@ module mnemonicApp {
             };
         }
 
-        // A big thank you to Anton K. Andersson http://antonkandersson.se/ for teaching me the following code
-        private pushArray(begin: number, end: number, source: string[][][]) {
+        // A big thanks to Anton K. Andersson, http://antonkandersson.se/, for teaching me the following code
+        private pushArray(begin: number, end: number, source: string[][]) {
             return source.filter(function (element, index, array) {
-                return index > begin && index < end;
+                return index >= begin && index < end;
             });
         }
 
         // From http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-        private shuffleArray(array: string[][][]) {
+        private shuffleArray(array: string[][]) {
             var currentIndex = array.length, temporaryValue, randomIndex;
 
             // While there remain elements to shuffle...
@@ -216,7 +216,7 @@ module mnemonicApp {
             };
             
             if (begin || end) {
-                var straightArray: string[][][] = this.pushArray(begin, end, this.mnemonicAlphabetImages);
+                var straightArray: string[][] = this.pushArray(begin, end + 1, this.mnemonicAlphabetImages);
             }
 
             if (!random) {
@@ -236,7 +236,7 @@ module mnemonicApp {
             };
 
             if (begin || end) {
-                var straightArray: string[][][] = this.pushArray(begin, end, this.mnemonicDaysImages);
+                var straightArray: string[][] = this.pushArray(begin, end + 1, this.mnemonicDaysImages);
             }
 
             if (!random) {
@@ -256,7 +256,7 @@ module mnemonicApp {
             };
 
             if (begin || end) {
-                var straightArray: string[][][] = this.pushArray(begin, end, this.mnemonicMonthImages);
+                var straightArray: string[][] = this.pushArray(begin, end + 1, this.mnemonicMonthImages);
             }
 
             if (!random) {
@@ -276,7 +276,7 @@ module mnemonicApp {
             };
 
             if (begin || end) {
-                var straightArray: string[][][] = this.pushArray(begin, end, this.mnemonicNumberImages);
+                var straightArray: string[][] = this.pushArray(begin, end + 1, this.mnemonicNumberImages);
             }
 
             if (!random) {

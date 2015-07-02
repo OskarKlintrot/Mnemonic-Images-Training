@@ -12,7 +12,7 @@ module mnemonicApp {
 
         init() {
             try {
-                var test: string[][][];
+                var test: string[][];
                 test = this.mnemonicData.getAlphabetImages(0, 5, true);
                 this.writeStuff(test);
                 test = this.mnemonicData.getDaysImages(2, 4);
@@ -30,7 +30,7 @@ module mnemonicApp {
             };
         }
 
-        writeStuff(source: string[][][]) {
+        writeStuff(source: string[][]) {
             source.forEach(function (element, index, array) {
                 console.log(element[0] + ": " + element[1]);
             });

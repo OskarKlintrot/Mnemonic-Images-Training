@@ -94,8 +94,12 @@
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <Content Include="Scripts\Routing.js" />
     <Content Include="web.config" />
-    <None Include="Templates\about.template" />
+    <None Include="Templates\about.template">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Templates\Numbers\startpage.template" />
+    <Content Include="Templates\Numbers\practice.template" />
+    <Content Include="Templates\error.template" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -109,6 +113,7 @@
     <TypeScriptCompile Include="Scripts\TypeScript\Games\Letters.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\Games\Months.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\Games\Numbers.ts" />
+    <TypeScriptCompile Include="Scripts\TypeScript\mnemonicData - Copy.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\mnemonicData.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\mnemonic.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
