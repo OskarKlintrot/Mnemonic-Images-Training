@@ -59,14 +59,14 @@ module mnemonicApp {
 
         private practiceSetup() {
             try {
-                var $NumberHTML: JQuery = $("#Number");
-                var $MnemomicImageHTML: JQuery = $("#MnemomicImage");
-                var $FirstNumberHTML: JQuery = $("#firstNumber");
-                var $LastNumberHTML: JQuery = $("#lastNumber");
-                var $LearningHTML: JQuery = $("#Learning");
-                var $Mode: JQuery = $("#mode");
-                var $Training: JQuery = $("#Training");
-                var $TimerHTML: JQuery = $("#Timer");
+                const $NumberHTML: JQuery = $("#Number");
+                const $MnemomicImageHTML: JQuery = $("#MnemomicImage");
+                const $FirstNumberHTML: JQuery = $("#firstNumber");
+                const $LastNumberHTML: JQuery = $("#lastNumber");
+                const $LearningHTML: JQuery = $("#Learning");
+                const $Mode: JQuery = $("#mode");
+                const $Training: JQuery = $("#Training");
+                const $TimerHTML: JQuery = $("#Timer");
 
                 var random: boolean = false;
 
