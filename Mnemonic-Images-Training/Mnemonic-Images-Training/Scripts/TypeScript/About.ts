@@ -5,14 +5,14 @@
 
 module mnemonicApp {
     export class About {
-        private main: JQuery;
+        private $main: JQuery;
         private presentation: any[];
-        private lead: JQuery;
+        private $lead: JQuery;
         private leadText: any[];
 
         constructor(leadText: string) {
-            this.main = $("main");
-            this.lead = $("p.lead");
+            this.$main = $("main");
+            this.$lead = $("p.lead");
             this.leadText = $.parseHTML(leadText);
         }
 
@@ -20,12 +20,12 @@ module mnemonicApp {
             try {
                 var that: About = this;
                 $.get('../../Templates/about.template', function (template: string) {
-                    that.renderContent(template, that.main);
+                    that.renderContent(template, that.$main);
                 });
 
-                this.main.empty();
-                if (this.lead.is(":empty")) {
-                    this.lead.append(this.leadText);
+                this.$main.empty();
+                if (this.$lead.is(":empty")) {
+                    this.$lead.append(this.leadText);
                 };
                 
             } catch (e) {

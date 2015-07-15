@@ -25,11 +25,10 @@ module mnemonicApp {
             try {
                 this.lead.empty();
                 this.main.empty();
-                var that: Numbers = this;
-                $.get('../../Templates/Numbers/startpage.template', function (template: string) {
-                    that.renderContent(template, that.main, null);
-                    that.playground = $("#playground");
-                    that.startpageSetup();
+                $.get('../../Templates/Numbers/startpage.template', (template: string) => {
+                    this.renderContent(template, this.main, null);
+                    this.playground = $("#playground");
+                    this.startpageSetup();
                 });
             } catch (e) {
                 console.log("An error occurred: " + e.message);
@@ -42,18 +41,17 @@ module mnemonicApp {
         }
 
         private startpageSetup() {
-            var that: Numbers = this;
-            var renderPlayground = function () {
-                $.get('../../Templates/Numbers/practice.template', function (template: string) {
-                    that.renderContent(template, that.playground, that.practiceObject);
-                    that.practiceSetup();
+            var renderPlayground = () => {
+                $.get('../../Templates/Numbers/practice.template', (template: string) => {
+                    this.renderContent(template, this.playground, this.practiceObject);
+                    this.practiceSetup();
                 });
             };
-            $("#Start").click(function () {
-                if (that.playground.is(":empty")) {
+            $("#Start").click( () => {
+                if (this.playground.is(":empty")) {
                     renderPlayground();
                 } else {
-                    that.playground.empty();
+                    this.playground.empty();
                     renderPlayground();
                 };
             });
@@ -61,27 +59,25 @@ module mnemonicApp {
 
         private practiceSetup() {
             try {
-                var that: Numbers = this;
-
-                var NumberHTML: JQuery = $("#Number");
-                var MnemomicImageHTML: JQuery = $("#MnemomicImage");
-                var FirstNumberHTML: JQuery = $("#firstNumber");
-                var LastNumberHTML: JQuery = $("#lastNumber");
-                var LearningHTML: JQuery = $("#Learning");
-                var Mode: JQuery = $("#mode");
-                var Training: JQuery = $("#Training");
-                var TimerHTML: JQuery = $("#Timer");
+                var $NumberHTML: JQuery = $("#Number");
+                var $MnemomicImageHTML: JQuery = $("#MnemomicImage");
+                var $FirstNumberHTML: JQuery = $("#firstNumber");
+                var $LastNumberHTML: JQuery = $("#lastNumber");
+                var $LearningHTML: JQuery = $("#Learning");
+                var $Mode: JQuery = $("#mode");
+                var $Training: JQuery = $("#Training");
+                var $TimerHTML: JQuery = $("#Timer");
 
                 var random: boolean = false;
 
-                if (Mode.val() == 1) {
+                if ($Mode.val() == 1) {
                     random = true;
                 };
 
-                if (isNaN(+FirstNumberHTML.val()) || isNaN(+LastNumberHTML.val()))
+                if (isNaN(+$FirstNumberHTML.val()) || isNaN(+$LastNumberHTML.val()))
                     throw new RangeError("Inmatningarna måste vara siffror!");
 
-                var test: string[][] = this.mnemonicImages.getNumberImages(+FirstNumberHTML.val(), +LastNumberHTML.val(), random);
+                var test: string[][] = this.mnemonicImages.getNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
 
                 test.forEach(function (element, index, array) {
                     console.log(element[0] + ": " + element[1]);
@@ -90,8 +86,8 @@ module mnemonicApp {
                 var temp: string = test[0][0];
                 var mek: string = test[0][1];
 
-                NumberHTML.text(temp);
-                MnemomicImageHTML.text(mek);
+                $NumberHTML.text(temp);
+                $MnemomicImageHTML.text(mek);
             }
             catch (e) {
                 this.playground.empty();
@@ -100,9 +96,8 @@ module mnemonicApp {
                     ErrorMessage: e.message
                 };
 
-                var that: Numbers = this;
-                $.get('../../Templates/error.template', function (template: string) {
-                    that.renderContent(template, that.playground, errorObject);
+                $.get('../../Templates/error.template', (template: string) => {
+                    this.renderContent(template, this.playground, errorObject);
                 });
             };
         };

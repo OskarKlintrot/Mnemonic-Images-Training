@@ -14,14 +14,14 @@ var mnemonicApp;
             this.mnemonicImages = new mnemonicApp.mnemonicData;
         }
         Numbers.prototype.init = function () {
+            var _this = this;
             try {
                 this.lead.empty();
                 this.main.empty();
-                var that = this;
                 $.get('../../Templates/Numbers/startpage.template', function (template) {
-                    that.renderContent(template, that.main, null);
-                    that.playground = $("#playground");
-                    that.startpageSetup();
+                    _this.renderContent(template, _this.main, null);
+                    _this.playground = $("#playground");
+                    _this.startpageSetup();
                 });
             }
             catch (e) {
@@ -34,59 +34,58 @@ var mnemonicApp;
             main.append(rendered);
         };
         Numbers.prototype.startpageSetup = function () {
-            var that = this;
+            var _this = this;
             var renderPlayground = function () {
                 $.get('../../Templates/Numbers/practice.template', function (template) {
-                    that.renderContent(template, that.playground, that.practiceObject);
-                    that.practiceSetup();
+                    _this.renderContent(template, _this.playground, _this.practiceObject);
+                    _this.practiceSetup();
                 });
             };
             $("#Start").click(function () {
-                if (that.playground.is(":empty")) {
+                if (_this.playground.is(":empty")) {
                     renderPlayground();
                 }
                 else {
-                    that.playground.empty();
+                    _this.playground.empty();
                     renderPlayground();
                 }
                 ;
             });
         };
         Numbers.prototype.practiceSetup = function () {
+            var _this = this;
             try {
-                var that = this;
-                var NumberHTML = $("#Number");
-                var MnemomicImageHTML = $("#MnemomicImage");
-                var FirstNumberHTML = $("#firstNumber");
-                var LastNumberHTML = $("#lastNumber");
-                var LearningHTML = $("#Learning");
-                var Mode = $("#mode");
-                var Training = $("#Training");
-                var TimerHTML = $("#Timer");
+                var $NumberHTML = $("#Number");
+                var $MnemomicImageHTML = $("#MnemomicImage");
+                var $FirstNumberHTML = $("#firstNumber");
+                var $LastNumberHTML = $("#lastNumber");
+                var $LearningHTML = $("#Learning");
+                var $Mode = $("#mode");
+                var $Training = $("#Training");
+                var $TimerHTML = $("#Timer");
                 var random = false;
-                if (Mode.val() == 1) {
+                if ($Mode.val() == 1) {
                     random = true;
                 }
                 ;
-                if (isNaN(+FirstNumberHTML.val()) || isNaN(+LastNumberHTML.val()))
+                if (isNaN(+$FirstNumberHTML.val()) || isNaN(+$LastNumberHTML.val()))
                     throw new RangeError("Inmatningarna måste vara siffror!");
-                var test = this.mnemonicImages.getNumberImages(+FirstNumberHTML.val(), +LastNumberHTML.val(), random);
+                var test = this.mnemonicImages.getNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
                 test.forEach(function (element, index, array) {
                     console.log(element[0] + ": " + element[1]);
                 });
                 var temp = test[0][0];
                 var mek = test[0][1];
-                NumberHTML.text(temp);
-                MnemomicImageHTML.text(mek);
+                $NumberHTML.text(temp);
+                $MnemomicImageHTML.text(mek);
             }
             catch (e) {
                 this.playground.empty();
                 var errorObject = {
                     ErrorMessage: e.message
                 };
-                var that = this;
                 $.get('../../Templates/error.template', function (template) {
-                    that.renderContent(template, that.playground, errorObject);
+                    _this.renderContent(template, _this.playground, errorObject);
                 });
             }
             ;

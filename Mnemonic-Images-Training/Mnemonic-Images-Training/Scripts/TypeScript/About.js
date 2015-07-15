@@ -9,19 +9,19 @@ var mnemonicApp;
                 var rendered = Mustache.render(template, null);
                 main.append(rendered);
             };
-            this.main = $("main");
-            this.lead = $("p.lead");
+            this.$main = $("main");
+            this.$lead = $("p.lead");
             this.leadText = $.parseHTML(leadText);
         }
         About.prototype.init = function () {
             try {
                 var that = this;
                 $.get('../../Templates/about.template', function (template) {
-                    that.renderContent(template, that.main);
+                    that.renderContent(template, that.$main);
                 });
-                this.main.empty();
-                if (this.lead.is(":empty")) {
-                    this.lead.append(this.leadText);
+                this.$main.empty();
+                if (this.$lead.is(":empty")) {
+                    this.$lead.append(this.leadText);
                 }
                 ;
             }
