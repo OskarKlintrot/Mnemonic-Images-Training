@@ -65,6 +65,7 @@ var mnemonicApp;
                 var $Training = $("#Training");
                 var $TimerHTML = $("#Timer");
                 var $Countdown = $("#countdown");
+                var countdown = $Countdown.val() - 1;
                 var random = false;
                 if ($Mode.val() == 1) {
                     random = true;
@@ -78,23 +79,28 @@ var mnemonicApp;
                 //});
                 $NumberHTML.text(MnemomicImages[0][0]);
                 $MnemomicImageHTML.text(MnemomicImages[0][1]);
-                $TimerHTML.text($Countdown.val());
+                $TimerHTML.text(countdown);
                 // Countdown and slide
-                var count = $Countdown.val();
+                var count = countdown;
                 var length = MnemomicImages.length;
+                var clear = [$NumberHTML, $MnemomicImageHTML, $TimerHTML];
                 this.countdownTimer(count, $TimerHTML);
                 var MnemomicImagesSlider = setInterval(function () {
-                    _this.countdownTimer(count, $TimerHTML);
                     length = length - 1;
-                    if (length < 0) {
+                    if (length <= 0) {
                         clearInterval(MnemomicImagesSlider);
+                        clear.forEach(function (element, index, array) {
+                            console.log("clear: " + element);
+                            element.empty();
+                        });
                         return;
                     }
                     ;
+                    _this.countdownTimer(count, $TimerHTML);
                     $NumberHTML.text(MnemomicImages[MnemomicImages.length - length][0]);
                     $MnemomicImageHTML.text(MnemomicImages[MnemomicImages.length - length][1]);
-                    $TimerHTML.text($Countdown.val());
-                }, $Countdown.val() + 999.999);
+                    $TimerHTML.text(countdown);
+                }, $Countdown.val() * 1000);
             }
             catch (e) {
                 this.playground.empty();
@@ -124,3 +130,4 @@ var mnemonicApp;
     })();
     mnemonicApp.Numbers = Numbers;
 })(mnemonicApp || (mnemonicApp = {}));
+//# sourceMappingURL=Numbers.js.map

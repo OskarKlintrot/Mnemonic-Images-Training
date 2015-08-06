@@ -23,3 +23,4 @@ var mnemonicApp;
     })();
     mnemonicApp.Days = Days;
 })(mnemonicApp || (mnemonicApp = {}));
+//# sourceMappingURL=Days.js.map

@@ -71,6 +71,7 @@ module mnemonicApp {
                 const $Training: JQuery = $("#Training");
                 const $TimerHTML: JQuery = $("#Timer");
                 const $Countdown: JQuery = $("#countdown");
+                const countdown: number = $Countdown.val() - 1;
 
                 var random: boolean = false;
 
@@ -89,25 +90,29 @@ module mnemonicApp {
 
                 $NumberHTML.text(MnemomicImages[0][0]);
                 $MnemomicImageHTML.text(MnemomicImages[0][1]);
-                $TimerHTML.text($Countdown.val());
+                $TimerHTML.text(countdown);
 
                 // Countdown and slide
-                var count: number = $Countdown.val();
+                var count: number = countdown;
                 var length: number = MnemomicImages.length;
+                var clear: JQuery[] = [$NumberHTML, $MnemomicImageHTML, $TimerHTML];
 
                 this.countdownTimer(count, $TimerHTML);
                 var MnemomicImagesSlider = setInterval(() => {
-                    this.countdownTimer(count, $TimerHTML);
                     length = length - 1;
-                    if (length < 0) {
+                    if (length <= 0) {
                         clearInterval(MnemomicImagesSlider);
+                        clear.forEach(function (element, index, array) {
+                            console.log("clear: " + element);
+                            element.empty();
+                        });
                         return;
                     };
+                    this.countdownTimer(count, $TimerHTML);
                     $NumberHTML.text(MnemomicImages[MnemomicImages.length - length][0]);
                     $MnemomicImageHTML.text(MnemomicImages[MnemomicImages.length - length][1]);
-                    $TimerHTML.text($Countdown.val());
-                }, $Countdown.val() + 999.999);
-                
+                    $TimerHTML.text(countdown);
+                }, $Countdown.val() * 1000);
             }
             catch (e) {
                 this.playground.empty();
