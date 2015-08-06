@@ -23,4 +23,3 @@ var mnemonicApp;
     })();
     mnemonicApp.Letters = Letters;
 })(mnemonicApp || (mnemonicApp = {}));
-//# sourceMappingURL=Letters.js.map
