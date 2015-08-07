@@ -64,28 +64,28 @@ var mnemonicApp;
                 var $Mode = $("#mode");
                 var $Training = $("#Training");
                 var $TimerHTML = $("#Timer");
-                var $Countdown = $("#countdown");
-                var countdown = $Countdown.val() - 1;
+                var $CountdownHTML = $("#countdown");
+                var countdown = $CountdownHTML.val() - 1;
                 var random = false;
                 if ($Mode.val() == 1) {
                     random = true;
                 }
                 ;
-                if (isNaN(+$FirstNumberHTML.val()) || isNaN(+$LastNumberHTML.val()) || isNaN(+$TimerHTML.val()))
+                if (isNaN(+$FirstNumberHTML.val()) || isNaN(+$LastNumberHTML.val()) || isNaN(+$CountdownHTML.val()))
                     throw new RangeError("Inmatningarna måste vara siffror!");
-                if ($FirstNumberHTML.val() == "" || $LastNumberHTML.val() == "" || $TimerHTML.val() == "")
+                if ($FirstNumberHTML.val() === "" || $LastNumberHTML.val() === "" || $CountdownHTML.val() === "")
                     throw new RangeError("Du har glömt att fylla i ett eller flera fält!");
                 var MnemomicImages = this.mnemonicImages.getNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
                 //MnemomicImages.forEach(function (element, index, array) {
                 //    console.log(element[0] + ": " + element[1]);
                 //});
                 $NumberHTML.text(MnemomicImages[0][0]);
-                $MnemomicImageHTML.text(MnemomicImages[0][1]);
                 $TimerHTML.text(countdown);
                 // Countdown and slide
                 var count = countdown;
                 var length = MnemomicImages.length;
                 var clear = [$NumberHTML, $MnemomicImageHTML, $TimerHTML];
+                this.showOrHideMnemomicImage($Mode, $MnemomicImageHTML, MnemomicImages, length);
                 this.countdownTimer(count, $TimerHTML);
                 var MnemomicImagesSlider = setInterval(function () {
                     length = length - 1;
@@ -100,9 +100,9 @@ var mnemonicApp;
                     ;
                     _this.countdownTimer(count, $TimerHTML);
                     $NumberHTML.text(MnemomicImages[MnemomicImages.length - length][0]);
-                    $MnemomicImageHTML.text(MnemomicImages[MnemomicImages.length - length][1]);
+                    _this.showOrHideMnemomicImage($Mode, $MnemomicImageHTML, MnemomicImages, length);
                     $TimerHTML.text(countdown);
-                }, $Countdown.val() * 1000);
+                }, $CountdownHTML.val() * 1000);
             }
             catch (e) {
                 this.playground.empty();
@@ -126,6 +126,16 @@ var mnemonicApp;
                 ;
                 $html.text(count);
             }, 1000);
+        };
+        ;
+        Numbers.prototype.showOrHideMnemomicImage = function ($Mode, $MnemomicImageHTML, MnemomicImages, index) {
+            if ($Mode.val() == 1) {
+                $MnemomicImageHTML.text("Visa  »");
+                $MnemomicImageHTML.click(function () { $MnemomicImageHTML.text(MnemomicImages[MnemomicImages.length - index][1]); });
+            }
+            else {
+                $MnemomicImageHTML.text(MnemomicImages[MnemomicImages.length - index][1]);
+            }
         };
         ;
         return Numbers;
