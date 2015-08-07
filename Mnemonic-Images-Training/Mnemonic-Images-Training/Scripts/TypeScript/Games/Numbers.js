@@ -71,8 +71,10 @@ var mnemonicApp;
                     random = true;
                 }
                 ;
-                if (isNaN(+$FirstNumberHTML.val()) || isNaN(+$LastNumberHTML.val()))
+                if (isNaN(+$FirstNumberHTML.val()) || isNaN(+$LastNumberHTML.val()) || isNaN(+$TimerHTML.val()))
                     throw new RangeError("Inmatningarna måste vara siffror!");
+                if ($FirstNumberHTML.val() == "" || $LastNumberHTML.val() == "" || $TimerHTML.val() == "")
+                    throw new RangeError("Du har glömt att fylla i ett eller flera fält!");
                 var MnemomicImages = this.mnemonicImages.getNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
                 //MnemomicImages.forEach(function (element, index, array) {
                 //    console.log(element[0] + ": " + element[1]);
@@ -130,4 +132,3 @@ var mnemonicApp;
     })();
     mnemonicApp.Numbers = Numbers;
 })(mnemonicApp || (mnemonicApp = {}));
-//# sourceMappingURL=Numbers.js.map
