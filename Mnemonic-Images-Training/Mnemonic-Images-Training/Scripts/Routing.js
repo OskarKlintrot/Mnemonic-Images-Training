@@ -14,23 +14,35 @@ window.onload = function () {
         if (location.hash === "#numbers") {
             var numbers = new mnemonicApp.Numbers;
             numbers.init();
+            changeClassActive("numbers");
         }
         if (location.hash === "#letters") {
             var letters = new mnemonicApp.Letters;
             letters.init();
+            changeClassActive("letters");
         }
         if (location.hash === "#days") {
             var days = new mnemonicApp.Days;
             days.init();
+            changeClassActive("days");
         }
         if (location.hash === "#months") {
             var months = new mnemonicApp.Months;
             months.init();
+            changeClassActive("months");
         }
         if (location.hash === "#about") {
             var about = new mnemonicApp.About(lead);
             about.init();
+            changeClassActive("about");
         }
+    }
+
+    function changeClassActive(page) {
+        $("#navbar > ul > li").each(function () {
+            $(this).removeClass("active");
+        });
+        $('a[href$="' + page + '"]').parent().addClass("active");
     }
 
     window.onhashchange = locationHashChanged;
