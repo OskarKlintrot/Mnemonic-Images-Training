@@ -1,9 +1,9 @@
 ﻿<div class="text-center">
     <h2>
-        <span id="Number" class="label label-primary col-md-3">{{ Number }}</span>
-        <span class="col-md-1"> </span>
-        <span id="MnemomicImage" class="label label-primary col-md-3">{{ MnemomicImage }}</span>
-        <span class="col-md-1"> </span>
-        <span id="Timer" class="label label-primary col-md-3">{{ Timer }}</span>
+        <span id="Number" class="label label-primary col-md-3 col-sm-5 col-xs-12 MnemomicLabel">{{ Number }}</span>
+        <!--<span class="col-md-1 col-sm-1 col-xs-0"> </span>-->
+        <span id="MnemomicImage" class="label label-primary col-md-3 col-sm-5 col-xs-12 MnemomicLabel">{{ MnemomicImage }}</span>
+        <!--<span class="col-md-1 col-sm-1 col-xs-0"> </span>-->
+        <span id="Timer" class="label label-primary col-md-3 col-sm-12 col-xs-12 MnemomicLabel">{{ Timer }}</span>
     </h2>
 </div>
