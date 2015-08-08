@@ -58,6 +58,7 @@ var mnemonicApp;
             try {
                 var $NumberHTML = $("#Number");
                 var $MnemomicImageHTML = $("#MnemomicImage");
+                var $MnemomicImageButton = $("#MnemomicImageButton");
                 var $FirstNumberHTML = $("#firstNumber");
                 var $LastNumberHTML = $("#lastNumber");
                 var $LearningHTML = $("#Learning");
@@ -65,6 +66,7 @@ var mnemonicApp;
                 var $Training = $("#Training");
                 var $TimerHTML = $("#Timer");
                 var $CountdownHTML = $("#countdown");
+                var $NextHTML = $("#Next");
                 var countdown = $CountdownHTML.val() - 1;
                 var random = false;
                 if ($Mode.val() == 1) {
@@ -75,7 +77,18 @@ var mnemonicApp;
                     throw new RangeError("Inmatningarna måste vara siffror!");
                 if ($FirstNumberHTML.val() === "" || $LastNumberHTML.val() === "" || $CountdownHTML.val() === "")
                     throw new RangeError("Du har glömt att fylla i ett eller flera fält!");
+                if (+$FirstNumberHTML.val() > +$LastNumberHTML.val())
+                    throw new RangeError("Första talet måste vara mindre än andra talet!");
                 var MnemomicImages = this.mnemonicImages.getNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
+                if ($Mode.val() == 1) {
+                    $MnemomicImageHTML.addClass('hide');
+                    $MnemomicImageButton.removeClass('hide');
+                }
+                else {
+                    $MnemomicImageHTML.removeClass('hide');
+                    $MnemomicImageButton.addClass('hide');
+                }
+                ;
                 //MnemomicImages.forEach(function (element, index, array) {
                 //    console.log(element[0] + ": " + element[1]);
                 //});
@@ -84,25 +97,8 @@ var mnemonicApp;
                 // Countdown and slide
                 var count = countdown;
                 var length = MnemomicImages.length;
-                var clear = [$NumberHTML, $MnemomicImageHTML, $TimerHTML];
-                this.showOrHideMnemomicImage($Mode, $MnemomicImageHTML, MnemomicImages, length);
-                this.countdownTimer(count, $TimerHTML);
-                var MnemomicImagesSlider = setInterval(function () {
-                    length = length - 1;
-                    if (length <= 0) {
-                        clearInterval(MnemomicImagesSlider);
-                        clear.forEach(function (element, index, array) {
-                            console.log("clear: " + element);
-                            element.empty();
-                        });
-                        return;
-                    }
-                    ;
-                    _this.countdownTimer(count, $TimerHTML);
-                    $NumberHTML.text(MnemomicImages[MnemomicImages.length - length][0]);
-                    _this.showOrHideMnemomicImage($Mode, $MnemomicImageHTML, MnemomicImages, length);
-                    $TimerHTML.text(countdown);
-                }, $CountdownHTML.val() * 1000);
+                var clear = [$NumberHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
+                this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $CountdownHTML, $NumberHTML, MnemomicImages, countdown, length, count, clear);
             }
             catch (e) {
                 this.playground.empty();
@@ -116,6 +112,38 @@ var mnemonicApp;
             ;
         };
         ;
+        Numbers.prototype.mnemomicImagesSlider = function ($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $CountdownHTML, $NumberHTML, MnemomicImages, countdown, length, count, clear) {
+            var _this = this;
+            this.showOrHideMnemomicImage($Mode, $MnemomicImageHTML, $MnemomicImageButton, MnemomicImages, length);
+            var countdownTimer = this.countdownTimer(count, $TimerHTML);
+            var MnemomicImagesSlider = setInterval(function () { $NextHTML.click(); }, $CountdownHTML.val() * 1000);
+            $NextHTML.click(function () {
+                length = length - 1;
+                if (length <= 0 && $Mode.val() == 1) {
+                    clearInterval(MnemomicImagesSlider);
+                    clear.forEach(function (element, index, array) {
+                        element.empty();
+                    });
+                    return;
+                }
+                else if (length <= 0 && $Mode.val() == 0) {
+                    length = MnemomicImages.length;
+                }
+                ;
+                countdownTimer;
+                $NumberHTML.text(MnemomicImages[MnemomicImages.length - length][0]);
+                _this.showOrHideMnemomicImage($Mode, $MnemomicImageHTML, $MnemomicImageButton, MnemomicImages, length);
+                $TimerHTML.text(countdown);
+                // Reset intervals
+                clearInterval(MnemomicImagesSlider);
+                clearInterval(countdownTimer);
+                if (length > 1) {
+                    countdownTimer = _this.countdownTimer(count, $TimerHTML);
+                    MnemomicImagesSlider = setInterval(function () { $NextHTML.click(); }, $CountdownHTML.val() * 1000);
+                }
+            });
+        };
+        ;
         Numbers.prototype.countdownTimer = function (count, $html) {
             var counter = setInterval(function () {
                 count = count - 1;
@@ -126,12 +154,13 @@ var mnemonicApp;
                 ;
                 $html.text(count);
             }, 1000);
+            return counter;
         };
         ;
-        Numbers.prototype.showOrHideMnemomicImage = function ($Mode, $MnemomicImageHTML, MnemomicImages, index) {
+        Numbers.prototype.showOrHideMnemomicImage = function ($Mode, $MnemomicImageHTML, $MnemomicImageButton, MnemomicImages, index) {
             if ($Mode.val() == 1) {
-                $MnemomicImageHTML.text("Visa  »");
-                $MnemomicImageHTML.click(function () { $MnemomicImageHTML.text(MnemomicImages[MnemomicImages.length - index][1]); });
+                $MnemomicImageButton.text("Visa »");
+                $MnemomicImageButton.click(function () { $MnemomicImageButton.text(MnemomicImages[MnemomicImages.length - index][1]); });
             }
             else {
                 $MnemomicImageHTML.text(MnemomicImages[MnemomicImages.length - index][1]);
