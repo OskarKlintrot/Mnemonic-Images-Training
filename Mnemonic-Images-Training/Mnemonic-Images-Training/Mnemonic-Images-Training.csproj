@@ -119,6 +119,7 @@
     <TypeScriptCompile Include="Scripts\TypeScript\Games\Numbers.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\mnemonicData.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\mnemonic.ts" />
+    <TypeScriptCompile Include="Scripts\TypeScript\Shared\GameEngine.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\mustache\mustache.d.ts" />
   </ItemGroup>

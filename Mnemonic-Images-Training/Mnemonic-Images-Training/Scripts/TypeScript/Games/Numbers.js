@@ -1,10 +1,18 @@
 /// <reference path="../../typings/jquery/jquery.d.ts" />
 /// <reference path="../../typings/mustache/mustache.d.ts" />
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    __.prototype = b.prototype;
+    d.prototype = new __();
+};
 var mnemonicApp;
 (function (mnemonicApp) {
-    var Numbers = (function () {
+    var Numbers = (function (_super) {
+        __extends(Numbers, _super);
         function Numbers() {
+            _super.call(this);
             this.practiceObject = {
                 Number: "Laddar...",
                 MnemomicImage: "Laddar...",
@@ -89,9 +97,6 @@ var mnemonicApp;
                     $MnemomicImageButton.addClass('hide');
                 }
                 ;
-                //MnemomicImages.forEach(function (element, index, array) {
-                //    console.log(element[0] + ": " + element[1]);
-                //});
                 $NumberHTML.text(MnemomicImages[0][0]);
                 $TimerHTML.text(countdown);
                 // Countdown and slide
@@ -112,62 +117,7 @@ var mnemonicApp;
             ;
         };
         ;
-        Numbers.prototype.mnemomicImagesSlider = function ($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $CountdownHTML, $NumberHTML, MnemomicImages, countdown, length, count, clear) {
-            var _this = this;
-            this.showOrHideMnemomicImage($Mode, $MnemomicImageHTML, $MnemomicImageButton, MnemomicImages, length);
-            var countdownTimer = this.countdownTimer(count, $TimerHTML);
-            var MnemomicImagesSlider = setInterval(function () { $NextHTML.click(); }, $CountdownHTML.val() * 1000);
-            $NextHTML.click(function () {
-                length = length - 1;
-                if (length <= 0 && $Mode.val() == 1) {
-                    clearInterval(MnemomicImagesSlider);
-                    clear.forEach(function (element, index, array) {
-                        element.empty();
-                    });
-                    return;
-                }
-                else if (length <= 0 && $Mode.val() == 0) {
-                    length = MnemomicImages.length;
-                }
-                ;
-                countdownTimer;
-                $NumberHTML.text(MnemomicImages[MnemomicImages.length - length][0]);
-                _this.showOrHideMnemomicImage($Mode, $MnemomicImageHTML, $MnemomicImageButton, MnemomicImages, length);
-                $TimerHTML.text(countdown);
-                // Reset intervals
-                clearInterval(MnemomicImagesSlider);
-                clearInterval(countdownTimer);
-                if (length > 1) {
-                    countdownTimer = _this.countdownTimer(count, $TimerHTML);
-                    MnemomicImagesSlider = setInterval(function () { $NextHTML.click(); }, $CountdownHTML.val() * 1000);
-                }
-            });
-        };
-        ;
-        Numbers.prototype.countdownTimer = function (count, $html) {
-            var counter = setInterval(function () {
-                count = count - 1;
-                if (count < 0) {
-                    clearInterval(counter);
-                    return;
-                }
-                ;
-                $html.text(count);
-            }, 1000);
-            return counter;
-        };
-        ;
-        Numbers.prototype.showOrHideMnemomicImage = function ($Mode, $MnemomicImageHTML, $MnemomicImageButton, MnemomicImages, index) {
-            if ($Mode.val() == 1) {
-                $MnemomicImageButton.text("Visa »");
-                $MnemomicImageButton.click(function () { $MnemomicImageButton.text(MnemomicImages[MnemomicImages.length - index][1]); });
-            }
-            else {
-                $MnemomicImageHTML.text(MnemomicImages[MnemomicImages.length - index][1]);
-            }
-        };
-        ;
         return Numbers;
-    })();
+    })(mnemonicApp.GameEngine);
     mnemonicApp.Numbers = Numbers;
 })(mnemonicApp || (mnemonicApp = {}));
