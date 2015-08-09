@@ -20,12 +20,16 @@ module mnemonicApp {
                 length = length - 1;
                 if (length <= 0 && $Mode.val() == 1) {
                     clearInterval(MnemomicImagesSlider);
-                    this.clearGameArea(clear);
+                    clearInterval(countdownTimer);
+                    $("#playground").empty();
                     return;
                 } else if (length <= 0 && $Mode.val() == 0) {
                     length = MnemomicImages.length;
+                }
+                else {
+                    countdownTimer;
                 };
-                countdownTimer;
+                
                 $NumberHTML.text(MnemomicImages[MnemomicImages.length - length][0]);
                 this.showOrHideMnemomicImage($Mode, $MnemomicImageHTML, $MnemomicImageButton, MnemomicImages, length);
                 $TimerHTML.text(countdown);

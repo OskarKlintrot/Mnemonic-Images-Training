@@ -51,10 +51,8 @@ module mnemonicApp {
             };
             $("#Start").click( () => {
                 if (this.playground.is(":empty")) {
-                    console.log("IF Start rules!");
                     renderPlayground();
                 } else {
-                    //console.log("ELSE Start rules!");
                     //this.playground.empty();
                     //renderPlayground();
                 };

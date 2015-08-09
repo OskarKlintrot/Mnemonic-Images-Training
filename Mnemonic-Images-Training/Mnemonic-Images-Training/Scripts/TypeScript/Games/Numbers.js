@@ -52,7 +52,6 @@ var mnemonicApp;
             };
             $("#Start").click(function () {
                 if (_this.playground.is(":empty")) {
-                    console.log("IF Start rules!");
                     renderPlayground();
                 }
                 else {
