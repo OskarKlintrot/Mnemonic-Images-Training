@@ -13,7 +13,7 @@
 		<div class="clearfix"></div>
 		<label for="countdown" class="col-md-1 control-label">Tid</label>
 		<div class="col-md-3">
-			<input type="text" class="form-control" id="countdown" placeholder="Sekunder per figurkod" /> 
+			<input type="text" class="form-control" id="countdown" placeholder="Sek per figurkod" /> 
 		</div>
 		<label for="mode" class="clearme col-md-1 control-label">Läge</label>
         <div class="col-md-3">

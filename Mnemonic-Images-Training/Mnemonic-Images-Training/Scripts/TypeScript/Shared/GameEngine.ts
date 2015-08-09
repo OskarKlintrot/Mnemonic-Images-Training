@@ -32,7 +32,7 @@ module mnemonicApp {
                 // Reset intervals
                 clearInterval(MnemomicImagesSlider);
                 clearInterval(countdownTimer);
-                if (length > 1) {
+                if (length > 0) {
                     countdownTimer = this.countdownTimer(count, $TimerHTML);
                     MnemomicImagesSlider = setInterval(() => { $NextHTML.click() }, $CountdownHTML.val() * 1000);
                 }
