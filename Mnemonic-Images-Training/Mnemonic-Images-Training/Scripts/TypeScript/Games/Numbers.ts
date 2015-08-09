@@ -51,10 +51,12 @@ module mnemonicApp {
             };
             $("#Start").click( () => {
                 if (this.playground.is(":empty")) {
+                    console.log("IF Start rules!");
                     renderPlayground();
                 } else {
-                    this.playground.empty();
-                    renderPlayground();
+                    //console.log("ELSE Start rules!");
+                    //this.playground.empty();
+                    //renderPlayground();
                 };
             });
         }
@@ -72,6 +74,9 @@ module mnemonicApp {
                 const $TimerHTML: JQuery = $("#Timer");
                 const $CountdownHTML: JQuery = $("#countdown");
                 const $NextHTML: JQuery = $("#Next");
+                const $StartButton: JQuery = $("#Start");
+                const $PauseButton: JQuery = $("#Pause");
+                const $StopButton: JQuery = $("#Stop");
                 const countdown: number = $CountdownHTML.val() - 1;
 
                 var random: boolean = false;
@@ -107,7 +112,7 @@ module mnemonicApp {
                 var length: number = MnemomicImages.length;
                 var clear: JQuery[] = [$NumberHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
 
-                this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $CountdownHTML,
+                this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML,
                     $NumberHTML, MnemomicImages, countdown, length, count, clear);
             }
             catch (e) {

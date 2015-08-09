@@ -23,4 +23,3 @@ var mnemonicApp;
     })();
     mnemonicApp.Months = Months;
 })(mnemonicApp || (mnemonicApp = {}));
-//# sourceMappingURL=Months.js.map

@@ -1,6 +1,14 @@
-﻿ #Start {
+﻿ /*#Start {
      margin: 10px 10px 0px 10px;
  }
+
+ #Pause {
+     margin: 10px 10px 0px 10px;
+ }
+
+ #Stop {
+     margin: 10px 10px 0px 10px;
+ }*/
 
  button.label {
      border: none;

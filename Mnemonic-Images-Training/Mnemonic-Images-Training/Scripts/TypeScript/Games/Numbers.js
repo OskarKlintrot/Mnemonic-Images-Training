@@ -52,11 +52,10 @@ var mnemonicApp;
             };
             $("#Start").click(function () {
                 if (_this.playground.is(":empty")) {
+                    console.log("IF Start rules!");
                     renderPlayground();
                 }
                 else {
-                    _this.playground.empty();
-                    renderPlayground();
                 }
                 ;
             });
@@ -75,6 +74,9 @@ var mnemonicApp;
                 var $TimerHTML = $("#Timer");
                 var $CountdownHTML = $("#countdown");
                 var $NextHTML = $("#Next");
+                var $StartButton = $("#Start");
+                var $PauseButton = $("#Pause");
+                var $StopButton = $("#Stop");
                 var countdown = $CountdownHTML.val() - 1;
                 var random = false;
                 if ($Mode.val() == 1) {
@@ -103,7 +105,7 @@ var mnemonicApp;
                 var count = countdown;
                 var length = MnemomicImages.length;
                 var clear = [$NumberHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
-                this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $CountdownHTML, $NumberHTML, MnemomicImages, countdown, length, count, clear);
+                this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML, $NumberHTML, MnemomicImages, countdown, length, count, clear);
             }
             catch (e) {
                 this.playground.empty();
@@ -121,4 +123,3 @@ var mnemonicApp;
     })(mnemonicApp.GameEngine);
     mnemonicApp.Numbers = Numbers;
 })(mnemonicApp || (mnemonicApp = {}));
-//# sourceMappingURL=Numbers.js.map
