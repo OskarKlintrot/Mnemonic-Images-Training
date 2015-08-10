@@ -7,6 +7,11 @@ module mnemonicApp {
     export class GameEngine {
         private count: number;
 
+        public renderContent(template: string, element: JQuery, templateObject: any) {
+            var rendered: string = Mustache.render(template, templateObject);
+            element.append(rendered);
+        }
+
         public mnemomicImagesSlider($Mode: JQuery, $MnemomicImageHTML: JQuery, $MnemomicImageButton: JQuery,
             $TimerHTML: JQuery, $NextHTML: JQuery, $StartButton: JQuery, $PauseButton: JQuery, $StopButton: JQuery,
             $CountdownHTML: JQuery, $NumberHTML: JQuery,

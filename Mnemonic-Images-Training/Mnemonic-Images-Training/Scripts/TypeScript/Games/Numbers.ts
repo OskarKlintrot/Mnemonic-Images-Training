@@ -25,24 +25,20 @@ module mnemonicApp {
 
         init() {
             try {
+                var startPageTemplate: string = "";
                 this.lead.empty();
                 this.main.empty();
                 $.get('../../Templates/Numbers/startpage.template', (template: string) => {
                     this.renderContent(template, this.main, null);
                     this.playground = $("#playground");
-                    this.startpageSetup();
+                    this.playgroundSetup();
                 });
             } catch (e) {
                 console.log("An error occurred: " + e.message);
             };
         }
 
-        private renderContent (template: string, main: JQuery, templateObject: any) {
-            var rendered: string = Mustache.render(template, templateObject);
-            main.append(rendered);
-        }
-
-        private startpageSetup() {
+        private playgroundSetup() {
             var renderPlayground = () => {
                 $.get('../../Templates/Numbers/practice.template', (template: string) => {
                     this.renderContent(template, this.playground, this.practiceObject);

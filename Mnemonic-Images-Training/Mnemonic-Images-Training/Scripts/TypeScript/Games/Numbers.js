@@ -25,12 +25,13 @@ var mnemonicApp;
         Numbers.prototype.init = function () {
             var _this = this;
             try {
+                var startPageTemplate = "";
                 this.lead.empty();
                 this.main.empty();
                 $.get('../../Templates/Numbers/startpage.template', function (template) {
                     _this.renderContent(template, _this.main, null);
                     _this.playground = $("#playground");
-                    _this.startpageSetup();
+                    _this.playgroundSetup();
                 });
             }
             catch (e) {
@@ -38,11 +39,7 @@ var mnemonicApp;
             }
             ;
         };
-        Numbers.prototype.renderContent = function (template, main, templateObject) {
-            var rendered = Mustache.render(template, templateObject);
-            main.append(rendered);
-        };
-        Numbers.prototype.startpageSetup = function () {
+        Numbers.prototype.playgroundSetup = function () {
             var _this = this;
             var renderPlayground = function () {
                 $.get('../../Templates/Numbers/practice.template', function (template) {
