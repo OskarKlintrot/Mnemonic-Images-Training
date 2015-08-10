@@ -104,6 +104,12 @@
     <Content Include="Templates\Numbers\startpage.template" />
     <Content Include="Templates\Numbers\practice.template" />
     <Content Include="Templates\error.template" />
+    <Content Include="Templates\Letters\practice.template" />
+    <Content Include="Templates\Letters\startpage.template" />
+    <Content Include="Templates\Days\practice.template" />
+    <Content Include="Templates\Days\startpage.template" />
+    <Content Include="Templates\Months\practice.template" />
+    <Content Include="Templates\Months\startpage.template" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -123,11 +129,7 @@
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\mustache\mustache.d.ts" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Templates\Days\" />
-    <Folder Include="Templates\Letters\" />
-    <Folder Include="Templates\Months\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

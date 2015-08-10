@@ -8,15 +8,6 @@ var mnemonicApp;
         }
         mnemonic.prototype.init = function () {
             try {
-                var test;
-                test = this.mnemonicData.getAlphabetImages(0, 5, true);
-                this.writeStuff(test);
-                test = this.mnemonicData.getDaysImages(2, 4);
-                this.writeStuff(test);
-                test = this.mnemonicData.getMonthsImages(2, 4);
-                this.writeStuff(test);
-                test = this.mnemonicData.getNumberImages(0, 4, true);
-                this.writeStuff(test);
             }
             catch (e) {
                 if (e instanceof RangeError) {

@@ -1,0 +1,40 @@
+﻿<h3>Dags att öva på månaderna!</h3>
+
+<div class=" col-md-offset-2 col-md-8">
+  <form class="form-horizontal" role="form">
+    <div class="form-group">
+      <label for="firstMonth" class="col-md-1 control-label">Från</label>
+      <div class="col-md-5">
+        <select id="firstMonth" class="form-control">
+          <option value="" disabled="" selected="" style="display: none;">Första månaden</option>
+        </select>
+      </div>
+      <label for="lastMonth" class="col-md-1 control-label">Till</label>
+      <div class="col-md-5">
+        <select id="lastMonth" class="form-control">
+          <option value="" disabled="" selected="" style="display: none;">Sista månaden</option>
+        </select>
+      </div>
+      <div class="clearfix"></div>
+      <label for="countdown" class="col-md-1 control-label">Tid</label>
+      <div class="col-md-5">
+        <input type="text" class="form-control" id="countdown" placeholder="Sek per figurkod" />
+      </div>
+      <label for="mode" class="clearme col-md-1 control-label">Läge</label>
+      <div class="col-md-5">
+        <select id="mode" class="form-control">
+          <option id="Learning" value="0">Inlärning</option>
+          <option id="Training" value="1">Träning</option>
+        </select>
+      </div>
+      <div class="clearfix"></div>
+      <div>
+        <button id="Start" type="submit" class="btn btn-success col-md-4 col-sm-4 col-xs-4">Start »</button>
+        <button id="Pause" type="submit" class="btn btn-warning col-md-4 col-sm-4 col-xs-4">Paus »</button>
+        <button id="Stop" type="submit" class="btn btn-danger col-md-4 col-sm-4 col-xs-4">Stopp »</button>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </form>
+  <div id="playground"></div>
+</div>

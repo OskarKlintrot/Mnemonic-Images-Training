@@ -128,7 +128,7 @@ module mnemonicApp {
             ["TiSdag", "TiStel"],
             ["oNSdag", "iNSekt"],
             ["ToRsdag", "ToRped (ubåts-)"],
-            ["FRedag", "Fredssymbol på halsband"],
+            ["FRedag", "Fredssymbol"], // "på halsband"
             ["LöRdag", "LeRkruka"],
             ["SöNdag", "SaNdslott"]
         ];

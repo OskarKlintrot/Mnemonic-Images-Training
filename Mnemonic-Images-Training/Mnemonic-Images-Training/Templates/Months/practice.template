@@ -1,0 +1,9 @@
+﻿<div class="text-center">
+    <h2>
+        <span id="Month" class="label label-primary col-md-6 col-sm-6 col-xs-12">{{ Month }}</span>
+        <span id="MnemomicImage" class="label label-primary col-md-6 col-sm-6 col-xs-12">{{ MnemomicImage }}</span>
+        <button id="MnemomicImageButton" class="label label-primary col-md-6 col-sm-6 col-xs-12 hide">{{ MnemomicImage }}</button>
+        <span id="Timer" class="label label-primary col-md-6 col-sm-6 col-xs-12">{{ Timer }}</span>
+        <button id="Next" class="label label-info col-md-6 col-sm-6 col-xs-12">Nästa »</button>
+    </h2>
+</div>

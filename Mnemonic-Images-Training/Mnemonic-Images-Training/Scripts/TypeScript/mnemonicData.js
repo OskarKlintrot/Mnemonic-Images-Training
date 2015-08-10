@@ -124,7 +124,7 @@ var mnemonicApp;
                 ["TiSdag", "TiStel"],
                 ["oNSdag", "iNSekt"],
                 ["ToRsdag", "ToRped (ubåts-)"],
-                ["FRedag", "Fredssymbol på halsband"],
+                ["FRedag", "Fredssymbol"],
                 ["LöRdag", "LeRkruka"],
                 ["SöNdag", "SaNdslott"]
             ];

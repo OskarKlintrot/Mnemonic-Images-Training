@@ -1,8 +1,8 @@
 ﻿"use strict";
 
 window.onload = function () {
-    var temp = new mnemonicApp.mnemonic;
-    temp.init();
+    //var temp = new mnemonicApp.mnemonic;
+    //temp.init();
 
     var lead = $("p.lead").html();
 

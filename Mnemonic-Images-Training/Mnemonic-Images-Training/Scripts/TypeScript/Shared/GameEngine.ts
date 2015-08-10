@@ -12,6 +12,15 @@ module mnemonicApp {
             element.append(rendered);
         }
 
+        public setupDropdownMenus(id: string, options: string[][]) {
+            $.each(options, function (key, value) {
+                $('#' + id)
+                    .append($("<option></option>")
+                        .attr("value", key)
+                        .text(value[0]));
+            });
+        };
+
         public mnemomicImagesSlider($Mode: JQuery, $MnemomicImageHTML: JQuery, $MnemomicImageButton: JQuery,
             $TimerHTML: JQuery, $NextHTML: JQuery, $StartButton: JQuery, $PauseButton: JQuery, $StopButton: JQuery,
             $CountdownHTML: JQuery, $NumberHTML: JQuery,
@@ -58,7 +67,6 @@ module mnemonicApp {
                 $("#playground").empty();
             });
             $PauseButton.click(() => {
-                console.log("pause, count: " + count + " this.count: " + this.count);
                 clearInterval(MnemomicImagesSlider);
                 clearInterval(countdownTimer);
             });
