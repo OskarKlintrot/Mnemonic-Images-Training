@@ -1,1 +1,52 @@
-﻿<p>Den här sidan är skapad av <a href="https://github.com/OskarKlintrot">Oskar Klintrot</a>.</p>
+﻿<p>
+  Figurkoderna baseras på följande alfanumeriska kod:
+  <table id="Alfanumeric">
+    <tr>
+      <td>1</td>
+      <td>–</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>–</td>
+      <td>THZ</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>–</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>–</td>
+      <td>WVK</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>–</td>
+      <td>FR</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>–</td>
+      <td>JPX</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>–</td>
+      <td>SD</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>–</td>
+      <td>GQL</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>–</td>
+      <td>C</td>
+    </tr>
+  </table>
+</p>
+
+<p>Den här sidan är skapad av <a href="https://github.com/OskarKlintrot">Oskar Klintrot</a>.</p>

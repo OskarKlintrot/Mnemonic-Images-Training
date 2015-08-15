@@ -13,3 +13,7 @@
  button.label {
      border: none;
  }
+
+ #Alfanumeric td {
+     padding: 0.25rem;
+ }
