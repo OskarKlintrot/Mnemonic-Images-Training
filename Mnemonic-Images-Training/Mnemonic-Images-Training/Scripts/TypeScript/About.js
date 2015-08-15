@@ -14,10 +14,10 @@ var mnemonicApp;
             this.leadText = $.parseHTML(leadText);
         }
         About.prototype.init = function () {
+            var _this = this;
             try {
-                var that = this;
-                $.get('../../Templates/about.template', function (template) {
-                    that.renderContent(template, that.$main);
+                $.get('../Templates/about.template', function (template) {
+                    _this.renderContent(template, _this.$main);
                 });
                 this.$main.empty();
                 if (this.$lead.is(":empty")) {
@@ -34,3 +34,4 @@ var mnemonicApp;
     })();
     mnemonicApp.About = About;
 })(mnemonicApp || (mnemonicApp = {}));
+//# sourceMappingURL=About.js.map

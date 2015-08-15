@@ -110,6 +110,8 @@
     <Content Include="Templates\Days\startpage.template" />
     <Content Include="Templates\Months\practice.template" />
     <Content Include="Templates\Months\startpage.template" />
+    <Content Include="Templates\Names\practice.template" />
+    <Content Include="Templates\Names\startpage.template" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -121,6 +123,7 @@
     <TypeScriptCompile Include="Scripts\TypeScript\About.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\Games\Days.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\Games\Letters.ts" />
+    <TypeScriptCompile Include="Scripts\TypeScript\Games\Names.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\Games\Months.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\Games\Numbers.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\mnemonicData.ts" />

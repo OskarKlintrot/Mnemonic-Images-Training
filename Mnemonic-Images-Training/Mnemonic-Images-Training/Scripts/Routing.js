@@ -31,6 +31,11 @@ window.onload = function () {
             months.init();
             changeClassActive("months");
         }
+        if (location.hash === "#names") {
+            var months = new mnemonicApp.Names;
+            months.init();
+            changeClassActive("names");
+        }
         if (location.hash === "#about") {
             var about = new mnemonicApp.About(lead);
             about.init();

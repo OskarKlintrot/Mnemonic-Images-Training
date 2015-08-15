@@ -18,9 +18,8 @@ module mnemonicApp {
 
         init() {
             try {
-                var that: About = this;
-                $.get('../../Templates/about.template', function (template: string) {
-                    that.renderContent(template, that.$main);
+                $.get('../Templates/about.template', (template: string) => {
+                    this.renderContent(template, this.$main);
                 });
 
                 this.$main.empty();
