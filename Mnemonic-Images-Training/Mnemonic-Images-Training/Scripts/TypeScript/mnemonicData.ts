@@ -1319,7 +1319,7 @@ module mnemonicApp {
             return array;
         }
 
-        getAlphabetImages(begin?: number, end?: number, random?: boolean) {
+        getAlphabetImages(begin?: number, end?: number, random?: boolean): string[][] {
             if (!begin && !end) {
                 return this.mnemonicAlphabetImages;
             } else {
@@ -1339,7 +1339,7 @@ module mnemonicApp {
             };
         }
 
-        getDaysImages(begin?: number, end?: number, random?: boolean) {
+        getDaysImages(begin?: number, end?: number, random?: boolean): string[][] {
             if (!begin && !end) {
                 return this.mnemonicDaysImages;
             } else {
@@ -1359,7 +1359,7 @@ module mnemonicApp {
             };
         }
 
-        getMonthsImages(begin?: number, end?: number, random?: boolean) {
+        getMonthsImages(begin?: number, end?: number, random?: boolean): string[][] {
             if (!begin && !end) {
                 return this.mnemonicMonthImages;
             } else {
@@ -1379,7 +1379,7 @@ module mnemonicApp {
             };
         }
 
-        getNumberImages(begin?: number, end?: number, random?: boolean) {
+        getNumberImages(begin?: number, end?: number, random?: boolean): string[][] {
             if (!begin && !end) {
                 return this.mnemonicNumberImages;
             } else {
@@ -1399,7 +1399,7 @@ module mnemonicApp {
             };
         }
 
-        getThreeCharNumberImages(begin?: number, end?: number, random?: boolean) {
+        getThreeCharNumberImages(begin?: number, end?: number, random?: boolean): string[][] {
             if (!begin && !end) {
                 return this.mnemonicThreeCharNumberImages;
             } else {
@@ -1419,7 +1419,7 @@ module mnemonicApp {
             };
         }
 
-        getNameImages(begin?: number, end?: number, random?: boolean) {
+        getNameImages(begin?: number, end?: number, random?: boolean): string[][] {
             if (!begin && !end) {
                 return this.mnemonicNameImages;
             } else {
