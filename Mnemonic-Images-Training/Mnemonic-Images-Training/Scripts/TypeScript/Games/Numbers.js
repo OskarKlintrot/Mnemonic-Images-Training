@@ -42,10 +42,16 @@ var mnemonicApp;
         Numbers.prototype.playgroundSetup = function () {
             var _this = this;
             var renderPlayground = function () {
-                $.get('../../Templates/Numbers/practice.template', function (template) {
-                    _this.renderContent(template, _this.playground, _this.practiceObject);
-                    _this.practiceSetup();
-                });
+                if ($("#firstNumber").val().length <= 2)
+                    $.get('../../Templates/Numbers/practice.template', function (template) {
+                        _this.renderContent(template, _this.playground, _this.practiceObject);
+                        _this.practiceSetup();
+                    });
+                else
+                    $.get('../../Templates/Numbers/practiceThreeChar.template', function (template) {
+                        _this.renderContent(template, _this.playground, _this.practiceObject);
+                        _this.practiceSetup();
+                    });
             };
             $("#Start").click(function () {
                 if (_this.playground.is(":empty")) {
@@ -85,7 +91,10 @@ var mnemonicApp;
                     throw new RangeError("Du har glömt att fylla i ett eller flera fält!");
                 if (+$FirstNumberHTML.val() > +$LastNumberHTML.val())
                     throw new RangeError("Första talet måste vara mindre än andra talet!");
-                var MnemomicImages = this.mnemonicImages.getNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
+                if ($FirstNumberHTML.val().length <= 2)
+                    var MnemomicImages = this.mnemonicImages.getNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
+                if ($FirstNumberHTML.val().length > 2)
+                    var MnemomicImages = this.mnemonicImages.getThreeCharNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
                 if ($Mode.val() == 1) {
                     $MnemomicImageHTML.addClass('hide');
                     $MnemomicImageButton.removeClass('hide');
@@ -119,3 +128,4 @@ var mnemonicApp;
     })(mnemonicApp.GameEngine);
     mnemonicApp.Numbers = Numbers;
 })(mnemonicApp || (mnemonicApp = {}));
+//# sourceMappingURL=Numbers.js.map

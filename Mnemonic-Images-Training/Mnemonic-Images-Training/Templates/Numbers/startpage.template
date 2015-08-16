@@ -1,6 +1,11 @@
 ﻿<h3>Dags att öva på siffror!</h3>
+<p>För att öva på tvåsiffriga tal, skriv exempelvis 0 som första tal. För att öva på tresiffriga tal, skriv exempelvis 000 som första tal.</p>
 
 <div class=" col-md-offset-2 col-md-8">
+  <!--<div>
+    <button id="TwoCharNumbers" class="btn btn-success active col-md-6 col-sm-6 col-xs-6">Tvåsiffriga »</button>
+    <button id="TwoCharNumbers" class="btn btn-success col-md-6 col-sm-6 col-xs-6">Tresiffriga »</button>
+  </div>-->
   <form class="form-horizontal" role="form">
     <div class="form-group">
       <label for="firstNumber" class="col-md-1 control-label">Från</label>

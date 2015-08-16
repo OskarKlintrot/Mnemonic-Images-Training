@@ -40,10 +40,16 @@ module mnemonicApp {
 
         private playgroundSetup() {
             var renderPlayground = () => {
-                $.get('../../Templates/Numbers/practice.template', (template: string) => {
-                    this.renderContent(template, this.playground, this.practiceObject);
-                    this.practiceSetup();
-                });
+                if ($("#firstNumber").val().length <= 2)
+                    $.get('../../Templates/Numbers/practice.template', (template: string) => {
+                        this.renderContent(template, this.playground, this.practiceObject);
+                        this.practiceSetup();
+                    });
+                else
+                    $.get('../../Templates/Numbers/practiceThreeChar.template', (template: string) => {
+                        this.renderContent(template, this.playground, this.practiceObject);
+                        this.practiceSetup();
+                    });
             };
             $("#Start").click( () => {
                 if (this.playground.is(":empty")) {
@@ -88,7 +94,11 @@ module mnemonicApp {
                 if (+$FirstNumberHTML.val() > +$LastNumberHTML.val())
                     throw new RangeError("Första talet måste vara mindre än andra talet!");
 
-                var MnemomicImages: string[][] = this.mnemonicImages.getNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
+                if ($FirstNumberHTML.val().length <= 2)
+                    var MnemomicImages: string[][] = this.mnemonicImages.getNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
+
+                if ($FirstNumberHTML.val().length > 2)
+                    var MnemomicImages: string[][] = this.mnemonicImages.getThreeCharNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
 
                 if ($Mode.val() == 1) {
                     $MnemomicImageHTML.addClass('hide');
