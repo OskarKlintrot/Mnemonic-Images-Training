@@ -9,12 +9,12 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var mnemonicApp;
 (function (mnemonicApp) {
-    var Numbers = (function (_super) {
-        __extends(Numbers, _super);
-        function Numbers() {
+    var Names = (function (_super) {
+        __extends(Names, _super);
+        function Names() {
             _super.call(this);
             this.practiceObject = {
-                Number: "Laddar...",
+                Name: "Laddar...",
                 MnemomicImage: "Laddar...",
                 Timer: "Laddar..."
             };
@@ -22,14 +22,16 @@ var mnemonicApp;
             this.lead = $("p.lead");
             this.mnemonicImages = new mnemonicApp.mnemonicData;
         }
-        Numbers.prototype.init = function () {
+        Names.prototype.init = function () {
             var _this = this;
             try {
                 var startPageTemplate = "";
                 this.lead.empty();
                 this.main.empty();
-                $.get('../../Templates/Numbers/startpage.template', function (template) {
+                $.get('../../Templates/Names/startpage.template', function (template) {
                     _this.renderContent(template, _this.main, null);
+                    _this.setupDropdownMenus("firstName", _this.mnemonicImages.getNameImages());
+                    _this.setupDropdownMenus("lastName", _this.mnemonicImages.getNameImages());
                     _this.playground = $("#playground");
                     _this.playgroundSetup();
                 });
@@ -39,10 +41,10 @@ var mnemonicApp;
             }
             ;
         };
-        Numbers.prototype.playgroundSetup = function () {
+        Names.prototype.playgroundSetup = function () {
             var _this = this;
             var renderPlayground = function () {
-                $.get('../../Templates/Numbers/practice.template', function (template) {
+                $.get('../../Templates/Names/practice.template', function (template) {
                     _this.renderContent(template, _this.playground, _this.practiceObject);
                     _this.practiceSetup();
                 });
@@ -56,14 +58,14 @@ var mnemonicApp;
                 ;
             });
         };
-        Numbers.prototype.practiceSetup = function () {
+        Names.prototype.practiceSetup = function () {
             var _this = this;
             try {
-                var $NumberHTML = $("#Number");
+                var $NameHTML = $("#Name");
                 var $MnemomicImageHTML = $("#MnemomicImage");
                 var $MnemomicImageButton = $("#MnemomicImageButton");
-                var $FirstNumberHTML = $("#firstNumber");
-                var $LastNumberHTML = $("#lastNumber");
+                var $FirstNameHTML = $("#firstName");
+                var $LastNameHTML = $("#lastName");
                 var $LearningHTML = $("#Learning");
                 var $Mode = $("#mode");
                 var $Training = $("#Training");
@@ -79,13 +81,14 @@ var mnemonicApp;
                     random = true;
                 }
                 ;
-                if (isNaN(+$FirstNumberHTML.val()) || isNaN(+$LastNumberHTML.val()) || isNaN(+$CountdownHTML.val()))
+                if (isNaN(+$FirstNameHTML.val()) || isNaN(+$LastNameHTML.val()) || isNaN(+$CountdownHTML.val()))
                     throw new RangeError("Inmatningarna måste vara siffror!");
-                if ($FirstNumberHTML.val() === "" || $LastNumberHTML.val() === "" || $CountdownHTML.val() === "")
+                if ($FirstNameHTML.val() === "" || $LastNameHTML.val() === "" || $CountdownHTML.val() === "")
                     throw new RangeError("Du har glömt att fylla i ett eller flera fält!");
-                if (+$FirstNumberHTML.val() > +$LastNumberHTML.val())
-                    throw new RangeError("Första talet måste vara mindre än andra talet!");
-                var MnemomicImages = this.mnemonicImages.getNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
+                if (+$FirstNameHTML.val() > +$LastNameHTML.val())
+                    throw new RangeError("Första namnet måste komma före andra namnet!");
+                console.log($FirstNameHTML.val());
+                var MnemomicImages = this.mnemonicImages.getNameImages(+$FirstNameHTML.val(), +$LastNameHTML.val(), random);
                 if ($Mode.val() == 1) {
                     $MnemomicImageHTML.addClass('hide');
                     $MnemomicImageButton.removeClass('hide');
@@ -95,13 +98,13 @@ var mnemonicApp;
                     $MnemomicImageButton.addClass('hide');
                 }
                 ;
-                $NumberHTML.text(MnemomicImages[0][0]);
+                $NameHTML.text(MnemomicImages[0][0]);
                 $TimerHTML.text(countdown);
                 // Countdown and slide
                 var count = countdown;
                 var length = MnemomicImages.length;
-                var clear = [$NumberHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
-                this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML, $NumberHTML, MnemomicImages, countdown, length, count, clear);
+                var clear = [$NameHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
+                this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML, $NameHTML, MnemomicImages, countdown, length, count, clear);
             }
             catch (e) {
                 this.playground.empty();
@@ -115,7 +118,7 @@ var mnemonicApp;
             ;
         };
         ;
-        return Numbers;
+        return Names;
     })(mnemonicApp.GameEngine);
-    mnemonicApp.Numbers = Numbers;
+    mnemonicApp.Names = Names;
 })(mnemonicApp || (mnemonicApp = {}));
