@@ -38,20 +38,10 @@ module mnemonicApp {
         private practiceSetup() {
             try {
                 const $DayHTML: JQuery = $("#Day");
-                const $MnemomicImageHTML: JQuery = $("#MnemomicImage");
-                const $MnemomicImageButton: JQuery = $("#MnemomicImageButton");
                 const $FirstDayHTML: JQuery = $("#firstDay");
                 const $LastDayHTML: JQuery = $("#lastDay");
-                const $LearningHTML: JQuery = $("#Learning");
                 const $Mode: JQuery = $("#mode");
-                const $Training: JQuery = $("#Training");
-                const $TimerHTML: JQuery = $("#Timer");
                 const $CountdownHTML: JQuery = $("#countdown");
-                const $NextHTML: JQuery = $("#Next");
-                const $StartButton: JQuery = $("#Start");
-                const $PauseButton: JQuery = $("#Pause");
-                const $StopButton: JQuery = $("#Stop");
-                const countdown: number = $CountdownHTML.val() - 1;
 
                 var random: boolean = false;
 
@@ -67,29 +57,10 @@ module mnemonicApp {
 
                 if (+$FirstDayHTML.val() > +$LastDayHTML.val())
                     throw new RangeError("Första dagen måste komma före andra dagen!");
-
-                console.log($FirstDayHTML.val());
-
+                
                 var MnemomicImages: string[][] = this.mnemonicImages.getDaysImages(+$FirstDayHTML.val(), +$LastDayHTML.val(), random);
 
-                if ($Mode.val() == 1) {
-                    $MnemomicImageHTML.addClass('hide');
-                    $MnemomicImageButton.removeClass('hide');
-                } else {
-                    $MnemomicImageHTML.removeClass('hide');
-                    $MnemomicImageButton.addClass('hide');
-                };
-
-                $DayHTML.text(MnemomicImages[0][0]);
-                $TimerHTML.text(countdown);
-
-                // Countdown and slide
-                var count: number = countdown;
-                var length: number = MnemomicImages.length;
-                var clear: JQuery[] = [$DayHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
-
-                this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML,
-                    $DayHTML, MnemomicImages, countdown, length, count, clear);
+                this.practiceRun($DayHTML, MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();

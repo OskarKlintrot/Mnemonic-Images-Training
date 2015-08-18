@@ -50,20 +50,10 @@ var mnemonicApp;
             var _this = this;
             try {
                 var $NumberHTML = $("#Number");
-                var $MnemomicImageHTML = $("#MnemomicImage");
-                var $MnemomicImageButton = $("#MnemomicImageButton");
                 var $FirstNumberHTML = $("#firstNumber");
                 var $LastNumberHTML = $("#lastNumber");
-                var $LearningHTML = $("#Learning");
                 var $Mode = $("#mode");
-                var $Training = $("#Training");
-                var $TimerHTML = $("#Timer");
                 var $CountdownHTML = $("#countdown");
-                var $NextHTML = $("#Next");
-                var $StartButton = $("#Start");
-                var $PauseButton = $("#Pause");
-                var $StopButton = $("#Stop");
-                var countdown = $CountdownHTML.val() - 1;
                 var random = false;
                 if ($Mode.val() == 1) {
                     random = true;
@@ -79,22 +69,7 @@ var mnemonicApp;
                     var MnemomicImages = this.mnemonicImages.getNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
                 if ($FirstNumberHTML.val().length > 2)
                     var MnemomicImages = this.mnemonicImages.getThreeCharNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
-                if ($Mode.val() == 1) {
-                    $MnemomicImageHTML.addClass('hide');
-                    $MnemomicImageButton.removeClass('hide');
-                }
-                else {
-                    $MnemomicImageHTML.removeClass('hide');
-                    $MnemomicImageButton.addClass('hide');
-                }
-                ;
-                $NumberHTML.text(MnemomicImages[0][0]);
-                $TimerHTML.text(countdown);
-                // Countdown and slide
-                var count = countdown;
-                var length = MnemomicImages.length;
-                var clear = [$NumberHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
-                this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML, $NumberHTML, MnemomicImages, countdown, length, count, clear);
+                this.practiceRun($NumberHTML, MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();
@@ -112,3 +87,4 @@ var mnemonicApp;
     })(mnemonicApp.GameEngine);
     mnemonicApp.Numbers = Numbers;
 })(mnemonicApp || (mnemonicApp = {}));
+//# sourceMappingURL=Numbers.js.map

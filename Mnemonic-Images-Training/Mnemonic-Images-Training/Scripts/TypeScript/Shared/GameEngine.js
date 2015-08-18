@@ -52,6 +52,37 @@ var mnemonicApp;
             });
         };
         ;
+        GameEngine.prototype.practiceRun = function ($TargetHTML, MnemomicImages) {
+            var $MnemomicImageHTML = $("#MnemomicImage");
+            var $MnemomicImageButton = $("#MnemomicImageButton");
+            var $LearningHTML = $("#Learning");
+            var $Mode = $("#mode");
+            var $Training = $("#Training");
+            var $TimerHTML = $("#Timer");
+            var $CountdownHTML = $("#countdown");
+            var $NextHTML = $("#Next");
+            var $StartButton = $("#Start");
+            var $PauseButton = $("#Pause");
+            var $StopButton = $("#Stop");
+            var countdown = $CountdownHTML.val() - 1;
+            if ($Mode.val() == 1) {
+                $MnemomicImageHTML.addClass('hide');
+                $MnemomicImageButton.removeClass('hide');
+            }
+            else {
+                $MnemomicImageHTML.removeClass('hide');
+                $MnemomicImageButton.addClass('hide');
+            }
+            ;
+            $TargetHTML.text(MnemomicImages[0][0]);
+            $TimerHTML.text(countdown);
+            // Countdown and slide
+            var count = countdown;
+            var length = MnemomicImages.length;
+            var clear = [$TargetHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
+            this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML, $TargetHTML, MnemomicImages, countdown, length, count, clear);
+        };
+        ;
         GameEngine.prototype.mnemomicImagesSlider = function ($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML, $NumberHTML, MnemomicImages, countdown, length, count, clear) {
             var _this = this;
             this.showOrHideMnemomicImage($Mode, $MnemomicImageHTML, $MnemomicImageButton, MnemomicImages, length);
@@ -138,3 +169,4 @@ var mnemonicApp;
     })();
     mnemonicApp.GameEngine = GameEngine;
 })(mnemonicApp || (mnemonicApp = {}));
+//# sourceMappingURL=GameEngine.js.map

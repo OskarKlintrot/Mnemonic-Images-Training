@@ -57,6 +57,40 @@ module mnemonicApp {
             });
         };
 
+        public practiceRun($TargetHTML: JQuery, MnemomicImages: string[][]) {
+            const $MnemomicImageHTML: JQuery = $("#MnemomicImage");
+            const $MnemomicImageButton: JQuery = $("#MnemomicImageButton");
+            const $LearningHTML: JQuery = $("#Learning");
+            const $Mode: JQuery = $("#mode");
+            const $Training: JQuery = $("#Training");
+            const $TimerHTML: JQuery = $("#Timer");
+            const $CountdownHTML: JQuery = $("#countdown");
+            const $NextHTML: JQuery = $("#Next");
+            const $StartButton: JQuery = $("#Start");
+            const $PauseButton: JQuery = $("#Pause");
+            const $StopButton: JQuery = $("#Stop");
+            const countdown: number = $CountdownHTML.val() - 1;
+
+            if ($Mode.val() == 1) {
+                $MnemomicImageHTML.addClass('hide');
+                $MnemomicImageButton.removeClass('hide');
+            } else {
+                $MnemomicImageHTML.removeClass('hide');
+                $MnemomicImageButton.addClass('hide');
+            };
+
+            $TargetHTML.text(MnemomicImages[0][0]);
+            $TimerHTML.text(countdown);
+
+            // Countdown and slide
+            var count: number = countdown;
+            var length: number = MnemomicImages.length;
+            var clear: JQuery[] = [$TargetHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
+
+            this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML,
+                $TargetHTML, MnemomicImages, countdown, length, count, clear);
+        };
+
         public mnemomicImagesSlider($Mode: JQuery, $MnemomicImageHTML: JQuery, $MnemomicImageButton: JQuery,
             $TimerHTML: JQuery, $NextHTML: JQuery, $StartButton: JQuery, $PauseButton: JQuery, $StopButton: JQuery,
             $CountdownHTML: JQuery, $NumberHTML: JQuery,

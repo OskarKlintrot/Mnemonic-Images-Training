@@ -44,20 +44,10 @@ var mnemonicApp;
             var _this = this;
             try {
                 var $LetterHTML = $("#Letter");
-                var $MnemomicImageHTML = $("#MnemomicImage");
-                var $MnemomicImageButton = $("#MnemomicImageButton");
                 var $FirstLetterHTML = $("#firstLetter");
                 var $LastLetterHTML = $("#lastLetter");
-                var $LearningHTML = $("#Learning");
                 var $Mode = $("#mode");
-                var $Training = $("#Training");
-                var $TimerHTML = $("#Timer");
                 var $CountdownHTML = $("#countdown");
-                var $NextHTML = $("#Next");
-                var $StartButton = $("#Start");
-                var $PauseButton = $("#Pause");
-                var $StopButton = $("#Stop");
-                var countdown = $CountdownHTML.val() - 1;
                 var random = false;
                 if ($Mode.val() == 1) {
                     random = true;
@@ -70,22 +60,7 @@ var mnemonicApp;
                 if (+$FirstLetterHTML.val() > +$LastLetterHTML.val())
                     throw new RangeError("Första bokstaven måste komma före andra bokstaven!");
                 var MnemomicImages = this.mnemonicImages.getAlphabetImages(+$FirstLetterHTML.val(), +$LastLetterHTML.val(), random);
-                if ($Mode.val() == 1) {
-                    $MnemomicImageHTML.addClass('hide');
-                    $MnemomicImageButton.removeClass('hide');
-                }
-                else {
-                    $MnemomicImageHTML.removeClass('hide');
-                    $MnemomicImageButton.addClass('hide');
-                }
-                ;
-                $LetterHTML.text(MnemomicImages[0][0]);
-                $TimerHTML.text(countdown);
-                // Countdown and slide
-                var count = countdown;
-                var length = MnemomicImages.length;
-                var clear = [$LetterHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
-                this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML, $LetterHTML, MnemomicImages, countdown, length, count, clear);
+                this.practiceRun($LetterHTML, MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();
@@ -103,3 +78,4 @@ var mnemonicApp;
     })(mnemonicApp.GameEngine);
     mnemonicApp.Letters = Letters;
 })(mnemonicApp || (mnemonicApp = {}));
+//# sourceMappingURL=Letters.js.map

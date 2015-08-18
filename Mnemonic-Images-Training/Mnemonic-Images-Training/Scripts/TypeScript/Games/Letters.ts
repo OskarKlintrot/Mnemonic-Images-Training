@@ -38,20 +38,10 @@ module mnemonicApp {
         private practiceSetup() {
             try {
                 const $LetterHTML: JQuery = $("#Letter");
-                const $MnemomicImageHTML: JQuery = $("#MnemomicImage");
-                const $MnemomicImageButton: JQuery = $("#MnemomicImageButton");
                 const $FirstLetterHTML: JQuery = $("#firstLetter");
                 const $LastLetterHTML: JQuery = $("#lastLetter");
-                const $LearningHTML: JQuery = $("#Learning");
                 const $Mode: JQuery = $("#mode");
-                const $Training: JQuery = $("#Training");
-                const $TimerHTML: JQuery = $("#Timer");
                 const $CountdownHTML: JQuery = $("#countdown");
-                const $NextHTML: JQuery = $("#Next");
-                const $StartButton: JQuery = $("#Start");
-                const $PauseButton: JQuery = $("#Pause");
-                const $StopButton: JQuery = $("#Stop");
-                const countdown: number = $CountdownHTML.val() - 1;
 
                 var random: boolean = false;
 
@@ -70,24 +60,7 @@ module mnemonicApp {
 
                 var MnemomicImages: string[][] = this.mnemonicImages.getAlphabetImages(+$FirstLetterHTML.val(), +$LastLetterHTML.val(), random);
 
-                if ($Mode.val() == 1) {
-                    $MnemomicImageHTML.addClass('hide');
-                    $MnemomicImageButton.removeClass('hide');
-                } else {
-                    $MnemomicImageHTML.removeClass('hide');
-                    $MnemomicImageButton.addClass('hide');
-                };
-
-                $LetterHTML.text(MnemomicImages[0][0]);
-                $TimerHTML.text(countdown);
-
-                // Countdown and slide
-                var count: number = countdown;
-                var length: number = MnemomicImages.length;
-                var clear: JQuery[] = [$LetterHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
-
-                this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML,
-                    $LetterHTML, MnemomicImages, countdown, length, count, clear);
+                this.practiceRun($LetterHTML, MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();

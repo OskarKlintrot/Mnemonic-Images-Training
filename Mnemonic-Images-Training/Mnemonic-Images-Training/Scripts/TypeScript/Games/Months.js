@@ -44,20 +44,10 @@ var mnemonicApp;
             var _this = this;
             try {
                 var $MonthHTML = $("#Month");
-                var $MnemomicImageHTML = $("#MnemomicImage");
-                var $MnemomicImageButton = $("#MnemomicImageButton");
                 var $FirstMonthHTML = $("#firstMonth");
                 var $LastMonthHTML = $("#lastMonth");
-                var $LearningHTML = $("#Learning");
                 var $Mode = $("#mode");
-                var $Training = $("#Training");
-                var $TimerHTML = $("#Timer");
                 var $CountdownHTML = $("#countdown");
-                var $NextHTML = $("#Next");
-                var $StartButton = $("#Start");
-                var $PauseButton = $("#Pause");
-                var $StopButton = $("#Stop");
-                var countdown = $CountdownHTML.val() - 1;
                 var random = false;
                 if ($Mode.val() == 1) {
                     random = true;
@@ -69,24 +59,8 @@ var mnemonicApp;
                     throw new RangeError("Du har glömt att fylla i ett eller flera fält!");
                 if (+$FirstMonthHTML.val() > +$LastMonthHTML.val())
                     throw new RangeError("Första månaden måste komma före andra månaden!");
-                console.log($FirstMonthHTML.val());
                 var MnemomicImages = this.mnemonicImages.getMonthsImages(+$FirstMonthHTML.val(), +$LastMonthHTML.val(), random);
-                if ($Mode.val() == 1) {
-                    $MnemomicImageHTML.addClass('hide');
-                    $MnemomicImageButton.removeClass('hide');
-                }
-                else {
-                    $MnemomicImageHTML.removeClass('hide');
-                    $MnemomicImageButton.addClass('hide');
-                }
-                ;
-                $MonthHTML.text(MnemomicImages[0][0]);
-                $TimerHTML.text(countdown);
-                // Countdown and slide
-                var count = countdown;
-                var length = MnemomicImages.length;
-                var clear = [$MonthHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
-                this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML, $MonthHTML, MnemomicImages, countdown, length, count, clear);
+                this.practiceRun($MonthHTML, MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();
@@ -104,3 +78,4 @@ var mnemonicApp;
     })(mnemonicApp.GameEngine);
     mnemonicApp.Months = Months;
 })(mnemonicApp || (mnemonicApp = {}));
+//# sourceMappingURL=Months.js.map
