@@ -53,9 +53,13 @@ var mnemonicApp;
                 if (_this.playground.is(":empty")) {
                     renderPlayground();
                 }
-                else {
+                else if ($("#ErrorMessage").length > 0) {
+                    console.log($("#ErrorMessage").length > 0);
+                    _this.playground.empty();
+                    renderPlayground();
                 }
                 ;
+                return false;
             });
         };
         Days.prototype.practiceSetup = function () {

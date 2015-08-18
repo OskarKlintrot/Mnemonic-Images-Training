@@ -1,8 +1,6 @@
 ﻿"use strict";
 
 window.onload = function () {
-    //var temp = new mnemonicApp.mnemonic;
-    //temp.init();
 
     var lead = $("p.lead").html();
 
@@ -11,32 +9,32 @@ window.onload = function () {
     }
 
     function locationHashChanged() {
-        if (location.hash === "#numbers") {
+        if (location.hash.slice(2) === "numbers") {
             var numbers = new mnemonicApp.Numbers;
             numbers.init();
             changeClassActive("numbers");
         }
-        if (location.hash === "#letters") {
+        if (location.hash.slice(2) === "letters") {
             var letters = new mnemonicApp.Letters;
             letters.init();
             changeClassActive("letters");
         }
-        if (location.hash === "#days") {
+        if (location.hash.slice(2) === "days") {
             var days = new mnemonicApp.Days;
             days.init();
             changeClassActive("days");
         }
-        if (location.hash === "#months") {
+        if (location.hash.slice(2) === "months") {
             var months = new mnemonicApp.Months;
             months.init();
             changeClassActive("months");
         }
-        if (location.hash === "#names") {
+        if (location.hash.slice(2) === "names") {
             var months = new mnemonicApp.Names;
             months.init();
             changeClassActive("names");
         }
-        if (location.hash === "#about") {
+        if (location.hash.slice(2) === "about") {
             var about = new mnemonicApp.About(lead);
             about.init();
             changeClassActive("about");

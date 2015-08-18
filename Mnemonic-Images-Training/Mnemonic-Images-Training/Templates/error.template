@@ -1,4 +1,4 @@
-﻿<div class="alert alert-danger">
+﻿<div id="ErrorMessage" class="alert alert-danger">
     <a href="#" class="close" data-dismiss="alert">&times;</a>
     <strong>Ett fel uppstod</strong>, se över dina inmatningar och försök igen. <br /> Felmeddelandet är följande: {{ ErrorMessage }}
 </div>

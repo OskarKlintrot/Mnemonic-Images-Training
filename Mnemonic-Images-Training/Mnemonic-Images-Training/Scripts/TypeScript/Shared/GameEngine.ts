@@ -55,20 +55,27 @@ module mnemonicApp {
                     countdownTimer = this.countdownTimer(count, $TimerHTML);
                     MnemomicImagesSlider = setInterval(() => { $NextHTML.click() }, $CountdownHTML.val() * 1000);
                 };
+
+                return false;
             });
             $StartButton.click(() => {
                 countdownTimer = this.countdownTimer(this.count, $TimerHTML);
                 setTimeout(() => { $NextHTML.click() }, (this.count + 1) * 1000);
 
+                return false;
             });
             $StopButton.click(() => {
                 clearInterval(MnemomicImagesSlider);
                 clearInterval(countdownTimer);
                 $("#playground").empty();
+
+                return false;
             });
             $PauseButton.click(() => {
                 clearInterval(MnemomicImagesSlider);
                 clearInterval(countdownTimer);
+
+                return false;
             });
         };
 
@@ -89,7 +96,7 @@ module mnemonicApp {
         private showOrHideMnemomicImage($Mode: JQuery, $MnemomicImageHTML: JQuery, $MnemomicImageButton: JQuery, MnemomicImages: string[][], index: number) {
             if ($Mode.val() == 1) {
                 $MnemomicImageButton.text("Visa »");
-                $MnemomicImageButton.click(() => { $MnemomicImageButton.text(MnemomicImages[MnemomicImages.length - index][1]); });
+                $MnemomicImageButton.click(() => { $MnemomicImageButton.text(MnemomicImages[MnemomicImages.length - index][1]); return false; });
             }
             else {
                 $MnemomicImageHTML.text(MnemomicImages[MnemomicImages.length - index][1]);

@@ -50,19 +50,23 @@ var mnemonicApp;
                     MnemomicImagesSlider = setInterval(function () { $NextHTML.click(); }, $CountdownHTML.val() * 1000);
                 }
                 ;
+                return false;
             });
             $StartButton.click(function () {
                 countdownTimer = _this.countdownTimer(_this.count, $TimerHTML);
                 setTimeout(function () { $NextHTML.click(); }, (_this.count + 1) * 1000);
+                return false;
             });
             $StopButton.click(function () {
                 clearInterval(MnemomicImagesSlider);
                 clearInterval(countdownTimer);
                 $("#playground").empty();
+                return false;
             });
             $PauseButton.click(function () {
                 clearInterval(MnemomicImagesSlider);
                 clearInterval(countdownTimer);
+                return false;
             });
         };
         ;
@@ -84,7 +88,7 @@ var mnemonicApp;
         GameEngine.prototype.showOrHideMnemomicImage = function ($Mode, $MnemomicImageHTML, $MnemomicImageButton, MnemomicImages, index) {
             if ($Mode.val() == 1) {
                 $MnemomicImageButton.text("Visa »");
-                $MnemomicImageButton.click(function () { $MnemomicImageButton.text(MnemomicImages[MnemomicImages.length - index][1]); });
+                $MnemomicImageButton.click(function () { $MnemomicImageButton.text(MnemomicImages[MnemomicImages.length - index][1]); return false; });
             }
             else {
                 $MnemomicImageHTML.text(MnemomicImages[MnemomicImages.length - index][1]);

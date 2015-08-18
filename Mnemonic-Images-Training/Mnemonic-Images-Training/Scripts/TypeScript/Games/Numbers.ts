@@ -54,10 +54,13 @@ module mnemonicApp {
             $("#Start").click( () => {
                 if (this.playground.is(":empty")) {
                     renderPlayground();
-                } else {
-                    //this.playground.empty();
-                    //renderPlayground();
+                } else if ($("#ErrorMessage").length > 0) {
+                    console.log($("#ErrorMessage").length > 0);
+                    this.playground.empty();
+                    renderPlayground();
                 };
+
+                return false;
             });
         }
 
