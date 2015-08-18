@@ -37,4 +37,3 @@ var mnemonicApp;
 //    var temp: mnemonicApp.mnemonic = new mnemonicApp.mnemonic;
 //    temp.init();
 //}); 
-//# sourceMappingURL=mnemonic.js.map

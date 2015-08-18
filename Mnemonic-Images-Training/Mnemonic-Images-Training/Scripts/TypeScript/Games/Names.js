@@ -13,6 +13,10 @@ var mnemonicApp;
         __extends(Names, _super);
         function Names() {
             _super.call(this);
+            //private main: JQuery;
+            //private playground: JQuery;
+            //private lead: JQuery;
+            //private mnemonicImages: mnemonicData;
             this.practiceObject = {
                 Name: "Laddar...",
                 MnemomicImage: "Laddar...",
@@ -25,11 +29,7 @@ var mnemonicApp;
         Names.prototype.init = function () {
             var _this = this;
             try {
-                var startPageTemplate = "";
-                this.lead.empty();
-                this.main.empty();
-                $.get('../../Templates/Names/startpage.template', function (template) {
-                    _this.renderContent(template, _this.main, null);
+                this.renderStartpage('../../Templates/Names/startpage.template', function () {
                     _this.setupDropdownMenus("firstName", _this.mnemonicImages.getNameImages());
                     _this.setupDropdownMenus("lastName", _this.mnemonicImages.getNameImages());
                     _this.playground = $("#playground");
@@ -43,24 +43,7 @@ var mnemonicApp;
         };
         Names.prototype.playgroundSetup = function () {
             var _this = this;
-            var renderPlayground = function () {
-                $.get('../../Templates/Names/practice.template', function (template) {
-                    _this.renderContent(template, _this.playground, _this.practiceObject);
-                    _this.practiceSetup();
-                });
-            };
-            $("#Start").click(function () {
-                if (_this.playground.is(":empty")) {
-                    renderPlayground();
-                }
-                else if ($("#ErrorMessage").length > 0) {
-                    console.log($("#ErrorMessage").length > 0);
-                    _this.playground.empty();
-                    renderPlayground();
-                }
-                ;
-                return false;
-            });
+            this.renderPlayground('../../Templates/Names/practice.template', this.practiceObject, function () { _this.practiceSetup(); });
         };
         Names.prototype.practiceSetup = function () {
             var _this = this;
@@ -126,4 +109,3 @@ var mnemonicApp;
     })(mnemonicApp.GameEngine);
     mnemonicApp.Names = Names;
 })(mnemonicApp || (mnemonicApp = {}));
-//# sourceMappingURL=Names.js.map

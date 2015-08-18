@@ -5,11 +5,45 @@
 
 module mnemonicApp {
     export class GameEngine {
+        public main: JQuery;
+        public playground: JQuery;
+        public lead: JQuery;
+        public mnemonicImages: mnemonicData;
         private count: number;
 
         public renderContent(template: string, element: JQuery, templateObject: any) {
             var rendered: string = Mustache.render(template, templateObject);
             element.append(rendered);
+        }
+
+        public renderStartpage(templateURL: string, callbackFunction: () => void) {
+            var startPageTemplate: string = "";
+            this.lead.empty();
+            this.main.empty();
+            $.get(templateURL, (template: string) => {
+                this.renderContent(template, this.main, null);
+                callbackFunction();
+            });
+        }
+
+        public renderPlayground(templateURL: string, practiceObject: any, callbackFunction: () => void) {
+            var renderPlayground = () => {
+                $.get(templateURL, (template: string) => {
+                    this.renderContent(template, this.playground, practiceObject);
+                    callbackFunction();
+                });
+            };
+            $("#Start").click(() => {
+                if (this.playground.is(":empty")) {
+                    renderPlayground();
+                } else if ($("#ErrorMessage").length > 0) {
+                    console.log($("#ErrorMessage").length > 0);
+                    this.playground.empty();
+                    renderPlayground();
+                };
+
+                return false;
+            });
         }
 
         public setupDropdownMenus(id: string, options: string[][]) {

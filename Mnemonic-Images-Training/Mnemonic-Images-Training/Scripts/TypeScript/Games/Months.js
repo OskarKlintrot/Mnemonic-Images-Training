@@ -13,6 +13,10 @@ var mnemonicApp;
         __extends(Months, _super);
         function Months() {
             _super.call(this);
+            //private main: JQuery;
+            //private playground: JQuery;
+            //private lead: JQuery;
+            //private mnemonicImages: mnemonicData;
             this.practiceObject = {
                 Month: "Laddar...",
                 MnemomicImage: "Laddar...",
@@ -25,11 +29,7 @@ var mnemonicApp;
         Months.prototype.init = function () {
             var _this = this;
             try {
-                var startPageTemplate = "";
-                this.lead.empty();
-                this.main.empty();
-                $.get('../../Templates/Months/startpage.template', function (template) {
-                    _this.renderContent(template, _this.main, null);
+                this.renderStartpage('../../Templates/Months/startpage.template', function () {
                     _this.setupDropdownMenus("firstMonth", _this.mnemonicImages.getMonthsImages());
                     _this.setupDropdownMenus("lastMonth", _this.mnemonicImages.getMonthsImages());
                     _this.playground = $("#playground");
@@ -43,24 +43,7 @@ var mnemonicApp;
         };
         Months.prototype.playgroundSetup = function () {
             var _this = this;
-            var renderPlayground = function () {
-                $.get('../../Templates/Months/practice.template', function (template) {
-                    _this.renderContent(template, _this.playground, _this.practiceObject);
-                    _this.practiceSetup();
-                });
-            };
-            $("#Start").click(function () {
-                if (_this.playground.is(":empty")) {
-                    renderPlayground();
-                }
-                else if ($("#ErrorMessage").length > 0) {
-                    console.log($("#ErrorMessage").length > 0);
-                    _this.playground.empty();
-                    renderPlayground();
-                }
-                ;
-                return false;
-            });
+            this.renderPlayground('../../Templates/Months/practice.template', this.practiceObject, function () { _this.practiceSetup(); });
         };
         Months.prototype.practiceSetup = function () {
             var _this = this;
@@ -126,4 +109,3 @@ var mnemonicApp;
     })(mnemonicApp.GameEngine);
     mnemonicApp.Months = Months;
 })(mnemonicApp || (mnemonicApp = {}));
-//# sourceMappingURL=Months.js.map

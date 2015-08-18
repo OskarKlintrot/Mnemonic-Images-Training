@@ -10,6 +10,37 @@ var mnemonicApp;
             var rendered = Mustache.render(template, templateObject);
             element.append(rendered);
         };
+        GameEngine.prototype.renderStartpage = function (templateURL, callbackFunction) {
+            var _this = this;
+            var startPageTemplate = "";
+            this.lead.empty();
+            this.main.empty();
+            $.get(templateURL, function (template) {
+                _this.renderContent(template, _this.main, null);
+                callbackFunction();
+            });
+        };
+        GameEngine.prototype.renderPlayground = function (templateURL, practiceObject, callbackFunction) {
+            var _this = this;
+            var renderPlayground = function () {
+                $.get(templateURL, function (template) {
+                    _this.renderContent(template, _this.playground, practiceObject);
+                    callbackFunction();
+                });
+            };
+            $("#Start").click(function () {
+                if (_this.playground.is(":empty")) {
+                    renderPlayground();
+                }
+                else if ($("#ErrorMessage").length > 0) {
+                    console.log($("#ErrorMessage").length > 0);
+                    _this.playground.empty();
+                    renderPlayground();
+                }
+                ;
+                return false;
+            });
+        };
         GameEngine.prototype.setupDropdownMenus = function (id, options) {
             $.each(options, function (key, value) {
                 $('#' + id)
@@ -105,4 +136,3 @@ var mnemonicApp;
     })();
     mnemonicApp.GameEngine = GameEngine;
 })(mnemonicApp || (mnemonicApp = {}));
-//# sourceMappingURL=GameEngine.js.map

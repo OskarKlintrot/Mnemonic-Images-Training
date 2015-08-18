@@ -5,10 +5,10 @@
 
 module mnemonicApp {
     export class Names extends GameEngine {
-        private main: JQuery;
-        private playground: JQuery;
-        private lead: JQuery;
-        private mnemonicImages: mnemonicData;
+        //private main: JQuery;
+        //private playground: JQuery;
+        //private lead: JQuery;
+        //private mnemonicImages: mnemonicData;
 
         private practiceObject = {
             Name: "Laddar...",
@@ -25,11 +25,7 @@ module mnemonicApp {
 
         init() {
             try {
-                var startPageTemplate: string = "";
-                this.lead.empty();
-                this.main.empty();
-                $.get('../../Templates/Names/startpage.template', (template: string) => {
-                    this.renderContent(template, this.main, null);
+                this.renderStartpage('../../Templates/Names/startpage.template', () => {
                     this.setupDropdownMenus("firstName", this.mnemonicImages.getNameImages());
                     this.setupDropdownMenus("lastName", this.mnemonicImages.getNameImages());
                     this.playground = $("#playground");
@@ -41,23 +37,7 @@ module mnemonicApp {
         }
 
         private playgroundSetup() {
-            var renderPlayground = () => {
-                $.get('../../Templates/Names/practice.template', (template: string) => {
-                    this.renderContent(template, this.playground, this.practiceObject);
-                    this.practiceSetup();
-                });
-            };
-            $("#Start").click(() => {
-                if (this.playground.is(":empty")) {
-                    renderPlayground();
-                } else if ($("#ErrorMessage").length > 0) {
-                    console.log($("#ErrorMessage").length > 0);
-                    this.playground.empty();
-                    renderPlayground();
-                };
-
-                return false;
-            });
+            this.renderPlayground('../../Templates/Names/practice.template', this.practiceObject, () => { this.practiceSetup(); });
         }
 
         private practiceSetup() {
