@@ -42,11 +42,13 @@ var mnemonicApp;
             });
         };
         GameEngine.prototype.setupDropdownMenus = function (id, options) {
-            $.each(options, function (key, value) {
-                $('#' + id)
-                    .append($("<option></option>")
-                    .attr("value", key)
-                    .text(value[0]));
+            $.each(id, function (idKey, idValue) {
+                $.each(options, function (optionKey, optionValue) {
+                    $('#' + idValue)
+                        .append($("<option></option>")
+                        .attr("value", optionKey)
+                        .text(optionValue[0]));
+                });
             });
         };
         ;

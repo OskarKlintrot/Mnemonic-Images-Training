@@ -5,10 +5,6 @@
 
 module mnemonicApp {
     export class Names extends GameEngine {
-        //private main: JQuery;
-        //private playground: JQuery;
-        //private lead: JQuery;
-        //private mnemonicImages: mnemonicData;
 
         private practiceObject = {
             Name: "Laddar...",
@@ -26,8 +22,7 @@ module mnemonicApp {
         init() {
             try {
                 this.renderStartpage('../../Templates/Names/startpage.template', () => {
-                    this.setupDropdownMenus("firstName", this.mnemonicImages.getNameImages());
-                    this.setupDropdownMenus("lastName", this.mnemonicImages.getNameImages());
+                    this.setupDropdownMenus(["firstName", "lastName"], this.mnemonicImages.getNameImages());
                     this.playground = $("#playground");
                     this.playgroundSetup();
                 });

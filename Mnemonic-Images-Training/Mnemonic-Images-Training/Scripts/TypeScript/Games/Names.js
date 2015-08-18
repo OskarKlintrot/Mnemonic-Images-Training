@@ -13,10 +13,6 @@ var mnemonicApp;
         __extends(Names, _super);
         function Names() {
             _super.call(this);
-            //private main: JQuery;
-            //private playground: JQuery;
-            //private lead: JQuery;
-            //private mnemonicImages: mnemonicData;
             this.practiceObject = {
                 Name: "Laddar...",
                 MnemomicImage: "Laddar...",
@@ -30,8 +26,7 @@ var mnemonicApp;
             var _this = this;
             try {
                 this.renderStartpage('../../Templates/Names/startpage.template', function () {
-                    _this.setupDropdownMenus("firstName", _this.mnemonicImages.getNameImages());
-                    _this.setupDropdownMenus("lastName", _this.mnemonicImages.getNameImages());
+                    _this.setupDropdownMenus(["firstName", "lastName"], _this.mnemonicImages.getNameImages());
                     _this.playground = $("#playground");
                     _this.playgroundSetup();
                 });

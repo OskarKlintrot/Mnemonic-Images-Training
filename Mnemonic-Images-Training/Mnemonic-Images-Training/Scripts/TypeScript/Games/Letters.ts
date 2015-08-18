@@ -5,10 +5,6 @@
 
 module mnemonicApp {
     export class Letters extends GameEngine {
-        //private main: JQuery;
-        //private playground: JQuery;
-        //private lead: JQuery;
-        //private mnemonicImages: mnemonicData;
 
         private practiceObject = {
             Letter: "Laddar...",
@@ -26,8 +22,7 @@ module mnemonicApp {
         init() {
             try {
                 this.renderStartpage('../../Templates/Letters/startpage.template', () => {
-                    this.setupDropdownMenus("firstLetter", this.mnemonicImages.getAlphabetImages());
-                    this.setupDropdownMenus("lastLetter", this.mnemonicImages.getAlphabetImages());
+                    this.setupDropdownMenus(["firstLetter", "lastLetter"], this.mnemonicImages.getAlphabetImages());
                     this.playground = $("#playground");
                     this.playgroundSetup();
                 });

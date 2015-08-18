@@ -13,10 +13,6 @@ var mnemonicApp;
         __extends(Days, _super);
         function Days() {
             _super.call(this);
-            //private main: JQuery;
-            //private playground: JQuery;
-            //private lead: JQuery;
-            //private mnemonicImages: mnemonicData;
             this.practiceObject = {
                 Day: "Laddar...",
                 MnemomicImage: "Laddar...",
@@ -30,8 +26,7 @@ var mnemonicApp;
             var _this = this;
             try {
                 this.renderStartpage('../../Templates/Days/startpage.template', function () {
-                    _this.setupDropdownMenus("firstDay", _this.mnemonicImages.getDaysImages());
-                    _this.setupDropdownMenus("lastDay", _this.mnemonicImages.getDaysImages());
+                    _this.setupDropdownMenus(["firstDay", "lastDay"], _this.mnemonicImages.getDaysImages());
                     _this.playground = $("#playground");
                     _this.playgroundSetup();
                 });

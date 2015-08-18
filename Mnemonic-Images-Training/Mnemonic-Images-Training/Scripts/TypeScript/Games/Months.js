@@ -13,10 +13,6 @@ var mnemonicApp;
         __extends(Months, _super);
         function Months() {
             _super.call(this);
-            //private main: JQuery;
-            //private playground: JQuery;
-            //private lead: JQuery;
-            //private mnemonicImages: mnemonicData;
             this.practiceObject = {
                 Month: "Laddar...",
                 MnemomicImage: "Laddar...",
@@ -30,8 +26,7 @@ var mnemonicApp;
             var _this = this;
             try {
                 this.renderStartpage('../../Templates/Months/startpage.template', function () {
-                    _this.setupDropdownMenus("firstMonth", _this.mnemonicImages.getMonthsImages());
-                    _this.setupDropdownMenus("lastMonth", _this.mnemonicImages.getMonthsImages());
+                    _this.setupDropdownMenus(["firstMonth", "lastMonth"], _this.mnemonicImages.getMonthsImages());
                     _this.playground = $("#playground");
                     _this.playgroundSetup();
                 });

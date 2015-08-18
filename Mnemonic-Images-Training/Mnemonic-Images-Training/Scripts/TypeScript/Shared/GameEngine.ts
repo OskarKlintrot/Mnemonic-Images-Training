@@ -46,12 +46,14 @@ module mnemonicApp {
             });
         }
 
-        public setupDropdownMenus(id: string, options: string[][]) {
-            $.each(options, function (key, value) {
-                $('#' + id)
-                    .append($("<option></option>")
-                        .attr("value", key)
-                        .text(value[0]));
+        public setupDropdownMenus(id: string[], options: string[][]) {
+            $.each(id, function (idKey, idValue) {
+                $.each(options, function (optionKey, optionValue) {
+                    $('#' + idValue)
+                        .append($("<option></option>")
+                            .attr("value", optionKey)
+                            .text(optionValue[0]));
+                });
             });
         };
 

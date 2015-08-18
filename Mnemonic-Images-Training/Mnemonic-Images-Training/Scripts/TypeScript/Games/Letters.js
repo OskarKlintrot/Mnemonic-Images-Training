@@ -13,10 +13,6 @@ var mnemonicApp;
         __extends(Letters, _super);
         function Letters() {
             _super.call(this);
-            //private main: JQuery;
-            //private playground: JQuery;
-            //private lead: JQuery;
-            //private mnemonicImages: mnemonicData;
             this.practiceObject = {
                 Letter: "Laddar...",
                 MnemomicImage: "Laddar...",
@@ -30,8 +26,7 @@ var mnemonicApp;
             var _this = this;
             try {
                 this.renderStartpage('../../Templates/Letters/startpage.template', function () {
-                    _this.setupDropdownMenus("firstLetter", _this.mnemonicImages.getAlphabetImages());
-                    _this.setupDropdownMenus("lastLetter", _this.mnemonicImages.getAlphabetImages());
+                    _this.setupDropdownMenus(["firstLetter", "lastLetter"], _this.mnemonicImages.getAlphabetImages());
                     _this.playground = $("#playground");
                     _this.playgroundSetup();
                 });

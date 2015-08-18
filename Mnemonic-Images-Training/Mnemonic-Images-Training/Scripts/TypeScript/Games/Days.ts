@@ -5,10 +5,6 @@
 
 module mnemonicApp {
     export class Days extends GameEngine {
-        //private main: JQuery;
-        //private playground: JQuery;
-        //private lead: JQuery;
-        //private mnemonicImages: mnemonicData;
 
         private practiceObject = {
             Day: "Laddar...",
@@ -26,8 +22,7 @@ module mnemonicApp {
         init() {
             try {
                 this.renderStartpage('../../Templates/Days/startpage.template', () => {
-                    this.setupDropdownMenus("firstDay", this.mnemonicImages.getDaysImages());
-                    this.setupDropdownMenus("lastDay", this.mnemonicImages.getDaysImages());
+                    this.setupDropdownMenus(["firstDay", "lastDay"], this.mnemonicImages.getDaysImages());
                     this.playground = $("#playground");
                     this.playgroundSetup();
                 });

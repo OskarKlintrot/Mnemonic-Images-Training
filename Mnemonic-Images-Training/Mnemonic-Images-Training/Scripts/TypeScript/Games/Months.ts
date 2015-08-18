@@ -5,10 +5,6 @@
 
 module mnemonicApp {
     export class Months extends GameEngine {
-        //private main: JQuery;
-        //private playground: JQuery;
-        //private lead: JQuery;
-        //private mnemonicImages: mnemonicData;
 
         private practiceObject = {
             Month: "Laddar...",
@@ -26,8 +22,7 @@ module mnemonicApp {
         init() {
             try {
                 this.renderStartpage('../../Templates/Months/startpage.template', () => {
-                    this.setupDropdownMenus("firstMonth", this.mnemonicImages.getMonthsImages());
-                    this.setupDropdownMenus("lastMonth", this.mnemonicImages.getMonthsImages());
+                    this.setupDropdownMenus(["firstMonth", "lastMonth"], this.mnemonicImages.getMonthsImages());
                     this.playground = $("#playground");
                     this.playgroundSetup();
                 });
