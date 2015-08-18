@@ -1,0 +1,4 @@
+﻿<tr>
+  <td>{{ Element }}</td>
+  <td>{{ Time }}</td>
+</tr>

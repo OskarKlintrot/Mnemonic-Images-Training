@@ -5,6 +5,7 @@ var mnemonicApp;
 (function (mnemonicApp) {
     var GameEngine = (function () {
         function GameEngine() {
+            this.result = [];
         }
         GameEngine.prototype.renderContent = function (template, element, templateObject) {
             var rendered = Mustache.render(template, templateObject);
@@ -12,6 +13,7 @@ var mnemonicApp;
         };
         GameEngine.prototype.renderStartpage = function (templateURL, callbackFunction) {
             var _this = this;
+            $("#Result").remove;
             var startPageTemplate = "";
             this.lead.empty();
             this.main.empty();
@@ -33,7 +35,6 @@ var mnemonicApp;
                     renderPlayground();
                 }
                 else if ($("#ErrorMessage").length > 0) {
-                    console.log($("#ErrorMessage").length > 0);
                     _this.playground.empty();
                     renderPlayground();
                 }
@@ -41,6 +42,26 @@ var mnemonicApp;
                 return false;
             });
         };
+        GameEngine.prototype.renderSummary = function (MnemomicImages) {
+            var _this = this;
+            var length = 0;
+            $.each(this.result, function (index, item) {
+                if (item != null)
+                    length++;
+            });
+            var summary = this.result.reduce(function (a, b) { return a + b; });
+            var average = Math.round((summary / length) * 10) / 10;
+            $.get('../../Templates/summary.template', function (template) {
+                _this.renderContent(template, _this.playground, { Average: "Genomsnittslig tid: " + average + " sek" });
+                $.each(MnemomicImages, function (key, value) {
+                    $.get('../../Templates/summaryElement.template', function (template) {
+                        var timeString = _this.result[key] === null ? " - " : Math.round(_this.result[key]) + " sek";
+                        _this.renderContent(template, $("#Result").children("table").children("tbody"), { Element: value[0], Time: timeString });
+                    });
+                });
+            });
+        };
+        ;
         GameEngine.prototype.setupDropdownMenus = function (id, options) {
             $.each(id, function (idKey, idValue) {
                 $.each(options, function (optionKey, optionValue) {
@@ -87,13 +108,19 @@ var mnemonicApp;
             var _this = this;
             this.showOrHideMnemomicImage($Mode, $MnemomicImageHTML, $MnemomicImageButton, MnemomicImages, length);
             var countdownTimer = this.countdownTimer(count, $TimerHTML);
+            this.timer = new Date();
             var MnemomicImagesSlider = setInterval(function () { $NextHTML.click(); }, $CountdownHTML.val() * 1000);
             $NextHTML.click(function () {
+                // Save time for summary
+                if ($Mode.val() == 1)
+                    _this.resultTimer(MnemomicImages.length - length);
+                // Change slide
                 length = length - 1;
                 if (length <= 0 && $Mode.val() == 1) {
                     clearInterval(MnemomicImagesSlider);
                     clearInterval(countdownTimer);
                     $("#playground").empty();
+                    _this.renderSummary(MnemomicImages);
                     return;
                 }
                 else if (length <= 0 && $Mode.val() == 0) {
@@ -107,6 +134,7 @@ var mnemonicApp;
                 _this.showOrHideMnemomicImage($Mode, $MnemomicImageHTML, $MnemomicImageButton, MnemomicImages, length);
                 $TimerHTML.text(countdown);
                 // Reset intervals
+                _this.timer = new Date();
                 clearInterval(MnemomicImagesSlider);
                 clearInterval(countdownTimer);
                 if (length > 0) {
@@ -125,6 +153,7 @@ var mnemonicApp;
                 clearInterval(MnemomicImagesSlider);
                 clearInterval(countdownTimer);
                 $("#playground").empty();
+                _this.result = [];
                 return false;
             });
             $PauseButton.click(function () {
@@ -132,6 +161,15 @@ var mnemonicApp;
                 clearInterval(countdownTimer);
                 return false;
             });
+        };
+        ;
+        GameEngine.prototype.resultTimer = function (index, fail) {
+            if (fail === void 0) { fail = false; }
+            var passedTime = new Date().getSeconds() - this.timer.getSeconds();
+            if (this.result.length === index && !fail)
+                this.result[index] = passedTime > 0 ? passedTime : 0;
+            else if (fail && index === this.result.length)
+                this.result[index] = null;
         };
         ;
         GameEngine.prototype.countdownTimer = function (count, $html) {
@@ -150,9 +188,14 @@ var mnemonicApp;
         };
         ;
         GameEngine.prototype.showOrHideMnemomicImage = function ($Mode, $MnemomicImageHTML, $MnemomicImageButton, MnemomicImages, index) {
+            var _this = this;
             if ($Mode.val() == 1) {
                 $MnemomicImageButton.text("Visa »");
-                $MnemomicImageButton.click(function () { $MnemomicImageButton.text(MnemomicImages[MnemomicImages.length - index][1]); return false; });
+                $MnemomicImageButton.click(function () {
+                    _this.resultTimer(MnemomicImages.length - index, true);
+                    $MnemomicImageButton.text(MnemomicImages[MnemomicImages.length - index][1]);
+                    return false;
+                });
             }
             else {
                 $MnemomicImageHTML.text(MnemomicImages[MnemomicImages.length - index][1]);
@@ -169,4 +212,3 @@ var mnemonicApp;
     })();
     mnemonicApp.GameEngine = GameEngine;
 })(mnemonicApp || (mnemonicApp = {}));
-//# sourceMappingURL=GameEngine.js.map

@@ -10,6 +10,8 @@ module mnemonicApp {
         public lead: JQuery;
         public mnemonicImages: mnemonicData;
         private count: number;
+        private timer: Date;
+        public result: number[] = [];
 
         public renderContent(template: string, element: JQuery, templateObject: any) {
             var rendered: string = Mustache.render(template, templateObject);
@@ -17,6 +19,7 @@ module mnemonicApp {
         }
 
         public renderStartpage(templateURL: string, callbackFunction: () => void) {
+            $("#Result").remove;
             var startPageTemplate: string = "";
             this.lead.empty();
             this.main.empty();
@@ -37,7 +40,6 @@ module mnemonicApp {
                 if (this.playground.is(":empty")) {
                     renderPlayground();
                 } else if ($("#ErrorMessage").length > 0) {
-                    console.log($("#ErrorMessage").length > 0);
                     this.playground.empty();
                     renderPlayground();
                 };
@@ -45,6 +47,26 @@ module mnemonicApp {
                 return false;
             });
         }
+
+        private renderSummary(MnemomicImages: string[][]) {
+            var length: number = 0;
+            $.each(this.result, (index, item) => {
+                if (item != null)
+                    length++;
+            });
+            var summary: number = this.result.reduce(function (a, b) { return a + b; });
+            var average: number = Math.round((summary / length) * 10) / 10;
+            
+            $.get('../../Templates/summary.template', (template: string) => {
+                this.renderContent(template, this.playground, { Average: "Genomsnittslig tid: " + average + " sek" });
+                $.each(MnemomicImages, (key, value) => {
+                    $.get('../../Templates/summaryElement.template', (template: string) => {
+                        var timeString: string = this.result[key] === null ? " - " : Math.round(this.result[key]) + " sek";
+                        this.renderContent(template, $("#Result").children("table").children("tbody"), { Element: value[0], Time: timeString });
+                    });
+                });
+            });
+        };
 
         public setupDropdownMenus(id: string[], options: string[][]) {
             $.each(id, function (idKey, idValue) {
@@ -99,13 +121,21 @@ module mnemonicApp {
 
             var countdownTimer: number = this.countdownTimer(count, $TimerHTML);
 
+            this.timer = new Date();
+
             var MnemomicImagesSlider = setInterval(() => { $NextHTML.click() }, $CountdownHTML.val() * 1000);
             $NextHTML.click(() => {
+                // Save time for summary
+                if ($Mode.val() == 1)
+                    this.resultTimer(MnemomicImages.length - length);
+
+                // Change slide
                 length = length - 1;
-                if (length <= 0 && $Mode.val() == 1) {
+                if (length <= 0 && $Mode.val() == 1) { // If end of training
                     clearInterval(MnemomicImagesSlider);
                     clearInterval(countdownTimer);
                     $("#playground").empty();
+                    this.renderSummary(MnemomicImages);
                     return;
                 } else if (length <= 0 && $Mode.val() == 0) {
                     length = MnemomicImages.length;
@@ -119,6 +149,8 @@ module mnemonicApp {
                 $TimerHTML.text(countdown);
 
                 // Reset intervals
+                this.timer = new Date();
+
                 clearInterval(MnemomicImagesSlider);
                 clearInterval(countdownTimer);
                 if (length > 0) {
@@ -139,6 +171,8 @@ module mnemonicApp {
                 clearInterval(countdownTimer);
                 $("#playground").empty();
 
+                this.result = [];
+
                 return false;
             });
             $PauseButton.click(() => {
@@ -147,6 +181,14 @@ module mnemonicApp {
 
                 return false;
             });
+        };
+
+        private resultTimer(index: number, fail: boolean = false) {
+            var passedTime: number = new Date().getSeconds() - this.timer.getSeconds();
+            if (this.result.length === index && !fail)
+                this.result[index] = passedTime > 0 ? passedTime : 0;
+            else if (fail && index === this.result.length)
+                this.result[index] = null;
         };
 
         private countdownTimer(count: number, $html: JQuery) {
@@ -166,7 +208,11 @@ module mnemonicApp {
         private showOrHideMnemomicImage($Mode: JQuery, $MnemomicImageHTML: JQuery, $MnemomicImageButton: JQuery, MnemomicImages: string[][], index: number) {
             if ($Mode.val() == 1) {
                 $MnemomicImageButton.text("Visa »");
-                $MnemomicImageButton.click(() => { $MnemomicImageButton.text(MnemomicImages[MnemomicImages.length - index][1]); return false; });
+                $MnemomicImageButton.click(() => {
+                    this.resultTimer(MnemomicImages.length - index, true);
+                    $MnemomicImageButton.text(MnemomicImages[MnemomicImages.length - index][1]);
+                    return false;
+                });
             }
             else {
                 $MnemomicImageHTML.text(MnemomicImages[MnemomicImages.length - index][1]);

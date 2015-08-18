@@ -78,4 +78,3 @@ var mnemonicApp;
     })(mnemonicApp.GameEngine);
     mnemonicApp.Names = Names;
 })(mnemonicApp || (mnemonicApp = {}));
-//# sourceMappingURL=Names.js.map

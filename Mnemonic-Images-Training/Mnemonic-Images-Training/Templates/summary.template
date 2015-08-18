@@ -1,0 +1,23 @@
+﻿<div id="Result">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Resultat
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>
+          {{ Average }}
+        </td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

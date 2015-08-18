@@ -34,4 +34,3 @@ var mnemonicApp;
     })();
     mnemonicApp.About = About;
 })(mnemonicApp || (mnemonicApp = {}));
-//# sourceMappingURL=About.js.map

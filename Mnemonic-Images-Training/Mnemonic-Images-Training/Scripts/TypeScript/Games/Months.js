@@ -78,4 +78,3 @@ var mnemonicApp;
     })(mnemonicApp.GameEngine);
     mnemonicApp.Months = Months;
 })(mnemonicApp || (mnemonicApp = {}));
-//# sourceMappingURL=Months.js.map

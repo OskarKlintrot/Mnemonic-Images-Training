@@ -113,6 +113,8 @@
     <Content Include="Templates\Names\practice.template" />
     <Content Include="Templates\Names\startpage.template" />
     <Content Include="Templates\Numbers\practiceThreeChar.template" />
+    <Content Include="Templates\summary.template" />
+    <Content Include="Templates\summaryElement.template" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
