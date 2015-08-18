@@ -69,7 +69,6 @@ var mnemonicApp;
                     throw new RangeError("Du har glömt att fylla i ett eller flera fält!");
                 if (+$FirstLetterHTML.val() > +$LastLetterHTML.val())
                     throw new RangeError("Första bokstaven måste komma före andra bokstaven!");
-                console.log($FirstLetterHTML.val());
                 var MnemomicImages = this.mnemonicImages.getAlphabetImages(+$FirstLetterHTML.val(), +$LastLetterHTML.val(), random);
                 if ($Mode.val() == 1) {
                     $MnemomicImageHTML.addClass('hide');

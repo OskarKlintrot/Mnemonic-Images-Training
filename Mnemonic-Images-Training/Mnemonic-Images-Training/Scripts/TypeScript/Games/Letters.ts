@@ -68,8 +68,6 @@ module mnemonicApp {
                 if (+$FirstLetterHTML.val() > +$LastLetterHTML.val())
                     throw new RangeError("Första bokstaven måste komma före andra bokstaven!");
 
-                console.log($FirstLetterHTML.val());
-
                 var MnemomicImages: string[][] = this.mnemonicImages.getAlphabetImages(+$FirstLetterHTML.val(), +$LastLetterHTML.val(), random);
 
                 if ($Mode.val() == 1) {
