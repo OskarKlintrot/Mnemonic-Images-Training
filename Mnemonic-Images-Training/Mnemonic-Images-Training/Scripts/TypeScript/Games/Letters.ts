@@ -12,17 +12,28 @@ module mnemonicApp {
             Timer: "Laddar..."
         }
 
+        private startpageObject = {
+            firstItemID: "firstLetter",
+            firstItemDescription: "Första bokstaven",
+            lastItemID: "lastLetter",
+            lastItemDescription: "Sista bokstaven"
+        }
+
         constructor() {
             super();
             this.main = $("main");
             this.lead = $("p.lead");
             this.mnemonicImages = new mnemonicData;
+
+            this.templates.startpage = '../../Templates/Shared/startpageDropdown.template';
+            this.templates.info = '../../Templates/Letters/info.template';
         }
 
         init() {
             try {
-                this.renderStartpage('../../Templates/Letters/startpage.template', () => {
-                    this.setupDropdownMenus(["firstLetter", "lastLetter"], this.mnemonicImages.getAlphabetImages());
+                this.renderStartpage(this.templates.startpage, this.startpageObject, () => {
+                    this.renderInfo(this.templates.info, null);
+                    this.setupDropdownMenus([this.startpageObject.firstItemID, this.startpageObject.lastItemID], this.mnemonicImages.getAlphabetImages());
                     this.playground = $("#playground");
                     this.playgroundSetup();
                 });
@@ -32,12 +43,11 @@ module mnemonicApp {
         }
 
         private playgroundSetup() {
-            this.renderPlayground('../../Templates/Letters/practice.template', this.practiceObject, () => { this.practiceSetup(); });
+            this.renderPlayground(this.templates.practice, this.practiceObject, () => { this.practiceSetup(); });
         }
 
         private practiceSetup() {
             try {
-                const $LetterHTML: JQuery = $("#Letter");
                 const $FirstLetterHTML: JQuery = $("#firstLetter");
                 const $LastLetterHTML: JQuery = $("#lastLetter");
                 const $Mode: JQuery = $("#mode");
@@ -60,7 +70,7 @@ module mnemonicApp {
 
                 var MnemomicImages: string[][] = this.mnemonicImages.getAlphabetImages(+$FirstLetterHTML.val(), +$LastLetterHTML.val(), random);
 
-                this.practiceRun($LetterHTML, MnemomicImages);
+                this.practiceRun(MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();
@@ -69,7 +79,7 @@ module mnemonicApp {
                     ErrorMessage: e.message
                 };
 
-                $.get('../../Templates/error.template', (template: string) => {
+                $.get(this.templates.error, (template: string) => {
                     this.renderContent(template, this.playground, errorObject);
                 });
             };

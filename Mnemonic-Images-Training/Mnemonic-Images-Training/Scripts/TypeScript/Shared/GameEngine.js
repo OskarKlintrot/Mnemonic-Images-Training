@@ -6,19 +6,34 @@ var mnemonicApp;
     var GameEngine = (function () {
         function GameEngine() {
             this.result = [];
+            this.templates = {
+                startpage: null,
+                info: null,
+                practice: '../../Templates/Shared/practice.template',
+                error: '../../Templates/Shared/error.template',
+                summary: '../../Templates/Shared/summary.template',
+                summaryElement: '../../Templates/Shared/summaryElement.template'
+            };
         }
         GameEngine.prototype.renderContent = function (template, element, templateObject) {
             var rendered = Mustache.render(template, templateObject);
             element.append(rendered);
         };
-        GameEngine.prototype.renderStartpage = function (templateURL, callbackFunction) {
+        GameEngine.prototype.renderStartpage = function (templateURL, startpageObject, callbackFunction) {
             var _this = this;
             $("#Result").remove;
             var startPageTemplate = "";
             this.lead.empty();
             this.main.empty();
             $.get(templateURL, function (template) {
-                _this.renderContent(template, _this.main, null);
+                _this.renderContent(template, _this.main, startpageObject);
+                callbackFunction();
+            });
+        };
+        GameEngine.prototype.renderInfo = function (templateURL, callbackFunction) {
+            var _this = this;
+            $.get(templateURL, function (template) {
+                _this.renderContent(template, $("#info"), null);
                 callbackFunction();
             });
         };
@@ -51,10 +66,10 @@ var mnemonicApp;
             });
             var summary = this.result.reduce(function (a, b) { return a + b; });
             var average = Math.round((summary / length) * 10) / 10;
-            $.get('../../Templates/summary.template', function (template) {
+            $.get(this.templates.summary, function (template) {
                 _this.renderContent(template, _this.playground, { Average: "Genomsnittslig tid: " + average + " sek" });
                 $.each(MnemomicImages, function (key, value) {
-                    $.get('../../Templates/summaryElement.template', function (template) {
+                    $.get(_this.templates.summaryElement, function (template) {
                         var timeString = _this.result[key] === null ? " - " :
                             _this.result[key].toString().length === 1 ? _this.result[key] + ".0 sek" : _this.result[key] + " sek";
                         _this.renderContent(template, $("#Result").children("table").children("tbody"), { Element: value[0], Time: timeString });
@@ -74,7 +89,8 @@ var mnemonicApp;
             });
         };
         ;
-        GameEngine.prototype.practiceRun = function ($TargetHTML, MnemomicImages) {
+        GameEngine.prototype.practiceRun = function (MnemomicImages) {
+            var $ItemHTML = $("#Item");
             var $MnemomicImageHTML = $("#MnemomicImage");
             var $MnemomicImageButton = $("#MnemomicImageButton");
             var $LearningHTML = $("#Learning");
@@ -96,13 +112,13 @@ var mnemonicApp;
                 $MnemomicImageButton.addClass('hide');
             }
             ;
-            $TargetHTML.text(MnemomicImages[0][0]);
+            $ItemHTML.text(MnemomicImages[0][0]);
             $TimerHTML.text(countdown);
             // Countdown and slide
             var count = countdown;
             var length = MnemomicImages.length;
-            var clear = [$TargetHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
-            this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML, $TargetHTML, MnemomicImages, countdown, length, count, clear);
+            var clear = [$ItemHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
+            this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML, $ItemHTML, MnemomicImages, countdown, length, count, clear);
         };
         ;
         GameEngine.prototype.mnemomicImagesSlider = function ($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML, $NumberHTML, MnemomicImages, countdown, length, count, clear) {

@@ -18,15 +18,24 @@ var mnemonicApp;
                 MnemomicImage: "Laddar...",
                 Timer: "Laddar..."
             };
+            this.startpageObject = {
+                firstItemID: "firstLetter",
+                firstItemDescription: "Första bokstaven",
+                lastItemID: "lastLetter",
+                lastItemDescription: "Sista bokstaven"
+            };
             this.main = $("main");
             this.lead = $("p.lead");
             this.mnemonicImages = new mnemonicApp.mnemonicData;
+            this.templates.startpage = '../../Templates/Shared/startpageDropdown.template';
+            this.templates.info = '../../Templates/Letters/info.template';
         }
         Letters.prototype.init = function () {
             var _this = this;
             try {
-                this.renderStartpage('../../Templates/Letters/startpage.template', function () {
-                    _this.setupDropdownMenus(["firstLetter", "lastLetter"], _this.mnemonicImages.getAlphabetImages());
+                this.renderStartpage(this.templates.startpage, this.startpageObject, function () {
+                    _this.renderInfo(_this.templates.info, null);
+                    _this.setupDropdownMenus([_this.startpageObject.firstItemID, _this.startpageObject.lastItemID], _this.mnemonicImages.getAlphabetImages());
                     _this.playground = $("#playground");
                     _this.playgroundSetup();
                 });
@@ -38,12 +47,11 @@ var mnemonicApp;
         };
         Letters.prototype.playgroundSetup = function () {
             var _this = this;
-            this.renderPlayground('../../Templates/Letters/practice.template', this.practiceObject, function () { _this.practiceSetup(); });
+            this.renderPlayground(this.templates.practice, this.practiceObject, function () { _this.practiceSetup(); });
         };
         Letters.prototype.practiceSetup = function () {
             var _this = this;
             try {
-                var $LetterHTML = $("#Letter");
                 var $FirstLetterHTML = $("#firstLetter");
                 var $LastLetterHTML = $("#lastLetter");
                 var $Mode = $("#mode");
@@ -60,14 +68,14 @@ var mnemonicApp;
                 if (+$FirstLetterHTML.val() > +$LastLetterHTML.val())
                     throw new RangeError("Första bokstaven måste komma före andra bokstaven!");
                 var MnemomicImages = this.mnemonicImages.getAlphabetImages(+$FirstLetterHTML.val(), +$LastLetterHTML.val(), random);
-                this.practiceRun($LetterHTML, MnemomicImages);
+                this.practiceRun(MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();
                 var errorObject = {
                     ErrorMessage: e.message
                 };
-                $.get('../../Templates/error.template', function (template) {
+                $.get(this.templates.error, function (template) {
                     _this.renderContent(template, _this.playground, errorObject);
                 });
             }

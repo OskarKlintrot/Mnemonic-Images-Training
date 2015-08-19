@@ -14,19 +14,28 @@ var mnemonicApp;
         function Names() {
             _super.call(this);
             this.practiceObject = {
-                Name: "Laddar...",
+                Item: "Laddar...",
                 MnemomicImage: "Laddar...",
                 Timer: "Laddar..."
+            };
+            this.startpageObject = {
+                firstItemID: "firstName",
+                firstItemDescription: "Första namnet",
+                lastItemID: "lastName",
+                lastItemDescription: "Sista namnet"
             };
             this.main = $("main");
             this.lead = $("p.lead");
             this.mnemonicImages = new mnemonicApp.mnemonicData;
+            this.templates.startpage = '../../Templates/Shared/startpageDropdown.template';
+            this.templates.info = '../../Templates/Names/info.template';
         }
         Names.prototype.init = function () {
             var _this = this;
             try {
-                this.renderStartpage('../../Templates/Names/startpage.template', function () {
-                    _this.setupDropdownMenus(["firstName", "lastName"], _this.mnemonicImages.getNameImages());
+                this.renderStartpage(this.templates.startpage, this.startpageObject, function () {
+                    _this.renderInfo(_this.templates.info, null);
+                    _this.setupDropdownMenus([_this.startpageObject.firstItemID, _this.startpageObject.lastItemID], _this.mnemonicImages.getNameImages());
                     _this.playground = $("#playground");
                     _this.playgroundSetup();
                 });
@@ -38,12 +47,11 @@ var mnemonicApp;
         };
         Names.prototype.playgroundSetup = function () {
             var _this = this;
-            this.renderPlayground('../../Templates/Names/practice.template', this.practiceObject, function () { _this.practiceSetup(); });
+            this.renderPlayground(this.templates.practice, this.practiceObject, function () { _this.practiceSetup(); });
         };
         Names.prototype.practiceSetup = function () {
             var _this = this;
             try {
-                var $NameHTML = $("#Name");
                 var $FirstNameHTML = $("#firstName");
                 var $LastNameHTML = $("#lastName");
                 var $Mode = $("#mode");
@@ -60,14 +68,14 @@ var mnemonicApp;
                 if (+$FirstNameHTML.val() > +$LastNameHTML.val())
                     throw new RangeError("Första namnet måste komma före andra namnet!");
                 var MnemomicImages = this.mnemonicImages.getNameImages(+$FirstNameHTML.val(), +$LastNameHTML.val(), random);
-                this.practiceRun($NameHTML, MnemomicImages);
+                this.practiceRun(MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();
                 var errorObject = {
                     ErrorMessage: e.message
                 };
-                $.get('../../Templates/error.template', function (template) {
+                $.get(this.templates.error, function (template) {
                     _this.renderContent(template, _this.playground, errorObject);
                 });
             }

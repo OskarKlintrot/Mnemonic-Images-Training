@@ -13,18 +13,34 @@ module mnemonicApp {
         private timer: Date;
         public result: number[] = [];
 
+        public templates = {
+            startpage: null,
+            info: null,
+            practice: '../../Templates/Shared/practice.template',
+            error: '../../Templates/Shared/error.template',
+            summary: '../../Templates/Shared/summary.template',
+            summaryElement: '../../Templates/Shared/summaryElement.template'
+        }
+
         public renderContent(template: string, element: JQuery, templateObject: any) {
             var rendered: string = Mustache.render(template, templateObject);
             element.append(rendered);
         }
 
-        public renderStartpage(templateURL: string, callbackFunction: () => void) {
+        public renderStartpage(templateURL: string, startpageObject: any, callbackFunction: () => void) {
             $("#Result").remove;
             var startPageTemplate: string = "";
             this.lead.empty();
             this.main.empty();
             $.get(templateURL, (template: string) => {
-                this.renderContent(template, this.main, null);
+                this.renderContent(template, this.main, startpageObject);
+                callbackFunction();
+            });
+        }
+
+        public renderInfo(templateURL: string, callbackFunction: () => void) {
+            $.get(templateURL, (template: string) => {
+                this.renderContent(template, $("#info"), null);
                 callbackFunction();
             });
         }
@@ -56,11 +72,11 @@ module mnemonicApp {
             });
             var summary: number = this.result.reduce(function (a, b) { return a + b; });
             var average: number = Math.round((summary / length) * 10) / 10;
-            
-            $.get('../../Templates/summary.template', (template: string) => {
+
+            $.get(this.templates.summary, (template: string) => {
                 this.renderContent(template, this.playground, { Average: "Genomsnittslig tid: " + average + " sek" });
                 $.each(MnemomicImages, (key, value) => {
-                    $.get('../../Templates/summaryElement.template', (template: string) => {
+                    $.get(this.templates.summaryElement, (template: string) => {
                         var timeString: string = this.result[key] === null ? " - " : 
                             this.result[key].toString().length === 1 ? this.result[key] + ".0 sek" : this.result[key] + " sek";
                         this.renderContent(template, $("#Result").children("table").children("tbody"), { Element: value[0], Time: timeString });
@@ -80,7 +96,8 @@ module mnemonicApp {
             });
         };
 
-        public practiceRun($TargetHTML: JQuery, MnemomicImages: string[][]) {
+        public practiceRun(MnemomicImages: string[][]) {
+            const $ItemHTML: JQuery = $("#Item");
             const $MnemomicImageHTML: JQuery = $("#MnemomicImage");
             const $MnemomicImageButton: JQuery = $("#MnemomicImageButton");
             const $LearningHTML: JQuery = $("#Learning");
@@ -102,16 +119,16 @@ module mnemonicApp {
                 $MnemomicImageButton.addClass('hide');
             };
 
-            $TargetHTML.text(MnemomicImages[0][0]);
+            $ItemHTML.text(MnemomicImages[0][0]);
             $TimerHTML.text(countdown);
 
             // Countdown and slide
             var count: number = countdown;
             var length: number = MnemomicImages.length;
-            var clear: JQuery[] = [$TargetHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
+            var clear: JQuery[] = [$ItemHTML, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML];
 
             this.mnemomicImagesSlider($Mode, $MnemomicImageHTML, $MnemomicImageButton, $TimerHTML, $NextHTML, $StartButton, $PauseButton, $StopButton, $CountdownHTML,
-                $TargetHTML, MnemomicImages, countdown, length, count, clear);
+                $ItemHTML, MnemomicImages, countdown, length, count, clear);
         };
 
         public mnemomicImagesSlider($Mode: JQuery, $MnemomicImageHTML: JQuery, $MnemomicImageButton: JQuery,

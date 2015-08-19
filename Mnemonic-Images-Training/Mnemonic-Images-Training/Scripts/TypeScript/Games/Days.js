@@ -18,14 +18,23 @@ var mnemonicApp;
                 MnemomicImage: "Laddar...",
                 Timer: "Laddar..."
             };
+            this.startpageObject = {
+                firstItemID: "firstDay",
+                firstItemDescription: "Första dagen",
+                lastItemID: "lastDay",
+                lastItemDescription: "Sista dagen"
+            };
             this.main = $("main");
             this.lead = $("p.lead");
             this.mnemonicImages = new mnemonicApp.mnemonicData;
+            this.templates.startpage = '../../Templates/Shared/startpageDropdown.template';
+            this.templates.info = '../../Templates/Days/info.template';
         }
         Days.prototype.init = function () {
             var _this = this;
             try {
-                this.renderStartpage('../../Templates/Days/startpage.template', function () {
+                this.renderStartpage(this.templates.startpage, this.startpageObject, function () {
+                    _this.renderInfo(_this.templates.info, null);
                     _this.setupDropdownMenus(["firstDay", "lastDay"], _this.mnemonicImages.getDaysImages());
                     _this.playground = $("#playground");
                     _this.playgroundSetup();
@@ -38,12 +47,11 @@ var mnemonicApp;
         };
         Days.prototype.playgroundSetup = function () {
             var _this = this;
-            this.renderPlayground('../../Templates/Days/practice.template', this.practiceObject, function () { _this.practiceSetup(); });
+            this.renderPlayground(this.templates.practice, this.practiceObject, function () { _this.practiceSetup(); });
         };
         Days.prototype.practiceSetup = function () {
             var _this = this;
             try {
-                var $DayHTML = $("#Day");
                 var $FirstDayHTML = $("#firstDay");
                 var $LastDayHTML = $("#lastDay");
                 var $Mode = $("#mode");
@@ -60,14 +68,14 @@ var mnemonicApp;
                 if (+$FirstDayHTML.val() > +$LastDayHTML.val())
                     throw new RangeError("Första dagen måste komma före andra dagen!");
                 var MnemomicImages = this.mnemonicImages.getDaysImages(+$FirstDayHTML.val(), +$LastDayHTML.val(), random);
-                this.practiceRun($DayHTML, MnemomicImages);
+                this.practiceRun(MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();
                 var errorObject = {
                     ErrorMessage: e.message
                 };
-                $.get('../../Templates/error.template', function (template) {
+                $.get(this.templates.error, function (template) {
                     _this.renderContent(template, _this.playground, errorObject);
                 });
             }

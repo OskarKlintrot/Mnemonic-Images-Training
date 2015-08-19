@@ -7,9 +7,16 @@ module mnemonicApp {
     export class Names extends GameEngine {
 
         private practiceObject = {
-            Name: "Laddar...",
+            Item: "Laddar...",
             MnemomicImage: "Laddar...",
             Timer: "Laddar..."
+        }
+
+        private startpageObject = {
+            firstItemID: "firstName",
+            firstItemDescription: "Första namnet",
+            lastItemID: "lastName",
+            lastItemDescription: "Sista namnet"
         }
 
         constructor() {
@@ -17,12 +24,16 @@ module mnemonicApp {
             this.main = $("main");
             this.lead = $("p.lead");
             this.mnemonicImages = new mnemonicData;
+
+            this.templates.startpage = '../../Templates/Shared/startpageDropdown.template';
+            this.templates.info = '../../Templates/Names/info.template';
         }
 
         init() {
             try {
-                this.renderStartpage('../../Templates/Names/startpage.template', () => {
-                    this.setupDropdownMenus(["firstName", "lastName"], this.mnemonicImages.getNameImages());
+                this.renderStartpage(this.templates.startpage, this.startpageObject, () => {
+                    this.renderInfo(this.templates.info, null);
+                    this.setupDropdownMenus([this.startpageObject.firstItemID, this.startpageObject.lastItemID], this.mnemonicImages.getNameImages());
                     this.playground = $("#playground");
                     this.playgroundSetup();
                 });
@@ -32,12 +43,11 @@ module mnemonicApp {
         }
 
         private playgroundSetup() {
-            this.renderPlayground('../../Templates/Names/practice.template', this.practiceObject, () => { this.practiceSetup(); });
+            this.renderPlayground(this.templates.practice, this.practiceObject, () => { this.practiceSetup(); });
         }
 
         private practiceSetup() {
             try {
-                const $NameHTML: JQuery = $("#Name");
                 const $FirstNameHTML: JQuery = $("#firstName");
                 const $LastNameHTML: JQuery = $("#lastName");
                 const $Mode: JQuery = $("#mode");
@@ -60,7 +70,7 @@ module mnemonicApp {
 
                 var MnemomicImages: string[][] = this.mnemonicImages.getNameImages(+$FirstNameHTML.val(), +$LastNameHTML.val(), random);
 
-                this.practiceRun($NameHTML, MnemomicImages);
+                this.practiceRun(MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();
@@ -69,7 +79,7 @@ module mnemonicApp {
                     ErrorMessage: e.message
                 };
 
-                $.get('../../Templates/error.template', (template: string) => {
+                $.get(this.templates.error, (template: string) => {
                     this.renderContent(template, this.playground, errorObject);
                 });
             };

@@ -1,19 +1,16 @@
-﻿<h3>Dags att öva på månaderna!</h3>
-
+﻿<div id="info">
+  
+</div>
 <div class=" col-md-offset-2 col-md-8">
   <form class="form-horizontal" role="form">
     <div class="form-group">
-      <label for="firstMonth" class="col-md-1 control-label">Från</label>
+      <label for="{{ firstItemID }}" class="col-md-1 control-label">Från</label>
       <div class="col-md-5">
-        <select id="firstMonth" class="form-control">
-          <option value="" disabled="" selected="" style="display: none;">Första månaden</option>
-        </select>
+        <input type="text" class="form-control" id="{{ firstItemID }}" placeholder="{{ firstItemDescription }}" />
       </div>
-      <label for="lastMonth" class="col-md-1 control-label">Till</label>
+      <label for="{{ lastItemID }}" class="col-md-1 control-label">Till</label>
       <div class="col-md-5">
-        <select id="lastMonth" class="form-control">
-          <option value="" disabled="" selected="" style="display: none;">Sista månaden</option>
-        </select>
+        <input type="text" class="form-control" id="{{ lastItemID }}" placeholder="{{ lastItemDescription }}" />
       </div>
       <div class="clearfix"></div>
       <label for="countdown" class="col-md-1 control-label">Tid</label>

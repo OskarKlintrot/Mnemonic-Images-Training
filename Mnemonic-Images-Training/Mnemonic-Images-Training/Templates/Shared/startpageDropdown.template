@@ -1,20 +1,19 @@
-﻿<h3>Dags att öva på vanliga namn!</h3>
-<p>Närmare bestämt de femtio vanligaste kvinnonamnen och de 
-femtio vanligaste mansnamnen.</p>
+﻿<div id="info">
 
+</div>
 <div class=" col-md-offset-2 col-md-8">
   <form class="form-horizontal" role="form">
     <div class="form-group">
-      <label for="firstName" class="col-md-1 control-label">Från</label>
+      <label for="{{ firstItemID }}" class="col-md-1 control-label">Från</label>
       <div class="col-md-5">
-        <select id="firstName" class="form-control">
-          <option value="" disabled="" selected="" style="display: none;">Första namnet</option>
+        <select id="{{ firstItemID }}" class="form-control">
+          <option value="" disabled="" selected="" style="display: none;">{{ firstItemDescription }}</option>
         </select>
       </div>
-      <label for="lastName" class="col-md-1 control-label">Till</label>
+      <label for="{{ lastItemID }}" class="col-md-1 control-label">Till</label>
       <div class="col-md-5">
-        <select id="lastName" class="form-control">
-          <option value="" disabled="" selected="" style="display: none;">Sista namnet</option>
+        <select id="{{ lastItemID }}" class="form-control">
+          <option value="" disabled="" selected="" style="display: none;">{{ lastItemDescription }}</option>
         </select>
       </div>
       <div class="clearfix"></div>

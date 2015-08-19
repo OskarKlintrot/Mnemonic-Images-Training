@@ -16,7 +16,7 @@ var mnemonicApp;
         About.prototype.init = function () {
             var _this = this;
             try {
-                $.get('../Templates/about.template', function (template) {
+                $.get('../Templates/About/about.template', function (template) {
                     _this.renderContent(template, _this.$main);
                 });
                 this.$main.empty();

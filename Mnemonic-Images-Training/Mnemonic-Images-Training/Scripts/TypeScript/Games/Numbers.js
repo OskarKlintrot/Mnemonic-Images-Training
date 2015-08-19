@@ -13,23 +13,28 @@ var mnemonicApp;
         __extends(Numbers, _super);
         function Numbers() {
             _super.call(this);
-            //private main: JQuery;
-            //private playground: JQuery;
-            //private lead: JQuery;
-            //private mnemonicImages: mnemonicData;
             this.practiceObject = {
                 Number: "Laddar...",
                 MnemomicImage: "Laddar...",
                 Timer: "Laddar..."
             };
+            this.startpageObject = {
+                firstItemID: "firstNumber",
+                firstItemDescription: "Första talet",
+                lastItemID: "lastNumber",
+                lastItemDescription: "Sista talet"
+            };
             this.main = $("main");
             this.lead = $("p.lead");
             this.mnemonicImages = new mnemonicApp.mnemonicData;
+            this.templates.startpage = '../../Templates/Shared/startpageTextbox.template';
+            this.templates.info = '../../Templates/Numbers/info.template';
         }
         Numbers.prototype.init = function () {
             var _this = this;
             try {
-                this.renderStartpage('../../Templates/Numbers/startpage.template', function () {
+                this.renderStartpage(this.templates.startpage, this.startpageObject, function () {
+                    _this.renderInfo(_this.templates.info, null);
                     _this.playground = $("#playground");
                     _this.playgroundSetup();
                 });
@@ -41,15 +46,11 @@ var mnemonicApp;
         };
         Numbers.prototype.playgroundSetup = function () {
             var _this = this;
-            if ($("#firstNumber").val().length <= 2)
-                this.renderPlayground('../../Templates/Numbers/practice.template', this.practiceObject, function () { _this.practiceSetup(); });
-            else
-                this.renderPlayground('../../Templates/Numbers/practiceThreeChar.template', this.practiceObject, function () { _this.practiceSetup(); });
+            this.renderPlayground(this.templates.practice, this.practiceObject, function () { _this.practiceSetup(); });
         };
         Numbers.prototype.practiceSetup = function () {
             var _this = this;
             try {
-                var $NumberHTML = $("#Number");
                 var $FirstNumberHTML = $("#firstNumber");
                 var $LastNumberHTML = $("#lastNumber");
                 var $Mode = $("#mode");
@@ -69,14 +70,14 @@ var mnemonicApp;
                     var MnemomicImages = this.mnemonicImages.getNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
                 if ($FirstNumberHTML.val().length > 2)
                     var MnemomicImages = this.mnemonicImages.getThreeCharNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
-                this.practiceRun($NumberHTML, MnemomicImages);
+                this.practiceRun(MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();
                 var errorObject = {
                     ErrorMessage: e.message
                 };
-                $.get('../../Templates/error.template', function (template) {
+                $.get(this.templates.error, function (template) {
                     _this.renderContent(template, _this.playground, errorObject);
                 });
             }

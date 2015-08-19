@@ -98,23 +98,20 @@
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <Content Include="Scripts\Routing.js" />
     <Content Include="web.config" />
-    <None Include="Templates\about.template">
+    <None Include="Templates\About\about.template">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Templates\Numbers\startpage.template" />
-    <Content Include="Templates\Numbers\practice.template" />
-    <Content Include="Templates\error.template" />
-    <Content Include="Templates\Letters\practice.template" />
-    <Content Include="Templates\Letters\startpage.template" />
-    <Content Include="Templates\Days\practice.template" />
-    <Content Include="Templates\Days\startpage.template" />
-    <Content Include="Templates\Months\practice.template" />
-    <Content Include="Templates\Months\startpage.template" />
-    <Content Include="Templates\Names\practice.template" />
-    <Content Include="Templates\Names\startpage.template" />
-    <Content Include="Templates\Numbers\practiceThreeChar.template" />
-    <Content Include="Templates\summary.template" />
-    <Content Include="Templates\summaryElement.template" />
+    <Content Include="Templates\Shared\error.template" />
+    <Content Include="Templates\Shared\summary.template" />
+    <Content Include="Templates\Shared\summaryElement.template" />
+    <Content Include="Templates\Shared\startpageTextbox.template" />
+    <Content Include="Templates\Numbers\info.template" />
+    <Content Include="Templates\Shared\startpageDropdown.template" />
+    <Content Include="Templates\Shared\practice.template" />
+    <Content Include="Templates\Names\info.template" />
+    <Content Include="Templates\Months\info.template" />
+    <Content Include="Templates\Letters\info.template" />
+    <Content Include="Templates\Days\info.template" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

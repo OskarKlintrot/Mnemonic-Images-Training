@@ -12,16 +12,27 @@ module mnemonicApp {
             Timer: "Laddar..."
         }
 
+        private startpageObject = {
+            firstItemID: "firstDay",
+            firstItemDescription: "Första dagen",
+            lastItemID: "lastDay",
+            lastItemDescription: "Sista dagen"
+        }
+
         constructor() {
             super();
             this.main = $("main");
             this.lead = $("p.lead");
             this.mnemonicImages = new mnemonicData;
+
+            this.templates.startpage = '../../Templates/Shared/startpageDropdown.template';
+            this.templates.info = '../../Templates/Days/info.template';
         }
 
         init() {
             try {
-                this.renderStartpage('../../Templates/Days/startpage.template', () => {
+                this.renderStartpage(this.templates.startpage, this.startpageObject, () => {
+                    this.renderInfo(this.templates.info, null);
                     this.setupDropdownMenus(["firstDay", "lastDay"], this.mnemonicImages.getDaysImages());
                     this.playground = $("#playground");
                     this.playgroundSetup();
@@ -32,12 +43,11 @@ module mnemonicApp {
         }
 
         private playgroundSetup() {
-            this.renderPlayground('../../Templates/Days/practice.template', this.practiceObject, () => { this.practiceSetup(); });
+            this.renderPlayground(this.templates.practice, this.practiceObject, () => { this.practiceSetup(); });
         }
 
         private practiceSetup() {
             try {
-                const $DayHTML: JQuery = $("#Day");
                 const $FirstDayHTML: JQuery = $("#firstDay");
                 const $LastDayHTML: JQuery = $("#lastDay");
                 const $Mode: JQuery = $("#mode");
@@ -60,7 +70,7 @@ module mnemonicApp {
                 
                 var MnemomicImages: string[][] = this.mnemonicImages.getDaysImages(+$FirstDayHTML.val(), +$LastDayHTML.val(), random);
 
-                this.practiceRun($DayHTML, MnemomicImages);
+                this.practiceRun(MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();
@@ -69,7 +79,7 @@ module mnemonicApp {
                     ErrorMessage: e.message
                 };
 
-                $.get('../../Templates/error.template', (template: string) => {
+                $.get(this.templates.error, (template: string) => {
                     this.renderContent(template, this.playground, errorObject);
                 });
             };

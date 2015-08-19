@@ -18,15 +18,24 @@ var mnemonicApp;
                 MnemomicImage: "Laddar...",
                 Timer: "Laddar..."
             };
+            this.startpageObject = {
+                firstItemID: "firstMonth",
+                firstItemDescription: "Första månaden",
+                lastItemID: "lastMonth",
+                lastItemDescription: "Sista månaden"
+            };
             this.main = $("main");
             this.lead = $("p.lead");
             this.mnemonicImages = new mnemonicApp.mnemonicData;
+            this.templates.startpage = '../../Templates/Shared/startpageDropdown.template';
+            this.templates.info = '../../Templates/Months/info.template';
         }
         Months.prototype.init = function () {
             var _this = this;
             try {
-                this.renderStartpage('../../Templates/Months/startpage.template', function () {
-                    _this.setupDropdownMenus(["firstMonth", "lastMonth"], _this.mnemonicImages.getMonthsImages());
+                this.renderStartpage(this.templates.startpage, this.startpageObject, function () {
+                    _this.renderInfo(_this.templates.info, null);
+                    _this.setupDropdownMenus([_this.startpageObject.firstItemID, _this.startpageObject.lastItemID], _this.mnemonicImages.getMonthsImages());
                     _this.playground = $("#playground");
                     _this.playgroundSetup();
                 });
@@ -38,12 +47,11 @@ var mnemonicApp;
         };
         Months.prototype.playgroundSetup = function () {
             var _this = this;
-            this.renderPlayground('../../Templates/Months/practice.template', this.practiceObject, function () { _this.practiceSetup(); });
+            this.renderPlayground(this.templates.practice, this.practiceObject, function () { _this.practiceSetup(); });
         };
         Months.prototype.practiceSetup = function () {
             var _this = this;
             try {
-                var $MonthHTML = $("#Month");
                 var $FirstMonthHTML = $("#firstMonth");
                 var $LastMonthHTML = $("#lastMonth");
                 var $Mode = $("#mode");
@@ -60,14 +68,14 @@ var mnemonicApp;
                 if (+$FirstMonthHTML.val() > +$LastMonthHTML.val())
                     throw new RangeError("Första månaden måste komma före andra månaden!");
                 var MnemomicImages = this.mnemonicImages.getMonthsImages(+$FirstMonthHTML.val(), +$LastMonthHTML.val(), random);
-                this.practiceRun($MonthHTML, MnemomicImages);
+                this.practiceRun(MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();
                 var errorObject = {
                     ErrorMessage: e.message
                 };
-                $.get('../../Templates/error.template', function (template) {
+                $.get(this.templates.error, function (template) {
                     _this.renderContent(template, _this.playground, errorObject);
                 });
             }

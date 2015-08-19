@@ -5,10 +5,6 @@
 
 module mnemonicApp {
     export class Numbers extends GameEngine {
-        //private main: JQuery;
-        //private playground: JQuery;
-        //private lead: JQuery;
-        //private mnemonicImages: mnemonicData;
 
         private practiceObject = {
             Number: "Laddar...",
@@ -16,16 +12,27 @@ module mnemonicApp {
             Timer: "Laddar..."
         }
 
+        private startpageObject = {
+            firstItemID: "firstNumber",
+            firstItemDescription: "Första talet",
+            lastItemID: "lastNumber",
+            lastItemDescription: "Sista talet"
+        }
+
         constructor() {
             super();
             this.main = $("main");
             this.lead = $("p.lead");
             this.mnemonicImages = new mnemonicData;
+
+            this.templates.startpage = '../../Templates/Shared/startpageTextbox.template';
+            this.templates.info = '../../Templates/Numbers/info.template';
         }
 
         init() {
             try {
-                this.renderStartpage('../../Templates/Numbers/startpage.template', () => {
+                this.renderStartpage(this.templates.startpage, this.startpageObject, () => {
+                    this.renderInfo(this.templates.info, null);
                     this.playground = $("#playground");
                     this.playgroundSetup();
                 });
@@ -35,15 +42,11 @@ module mnemonicApp {
         }
 
         private playgroundSetup() {
-            if ($("#firstNumber").val().length <= 2)
-                this.renderPlayground('../../Templates/Numbers/practice.template', this.practiceObject, () => { this.practiceSetup(); });
-            else
-                this.renderPlayground('../../Templates/Numbers/practiceThreeChar.template', this.practiceObject, () => { this.practiceSetup(); });
+            this.renderPlayground(this.templates.practice, this.practiceObject, () => { this.practiceSetup(); });
         }
 
         private practiceSetup() {
             try {
-                const $NumberHTML: JQuery = $("#Number");
                 const $FirstNumberHTML: JQuery = $("#firstNumber");
                 const $LastNumberHTML: JQuery = $("#lastNumber");
                 const $Mode: JQuery = $("#mode");
@@ -70,7 +73,7 @@ module mnemonicApp {
                 if ($FirstNumberHTML.val().length > 2)
                     var MnemomicImages: string[][] = this.mnemonicImages.getThreeCharNumberImages(+$FirstNumberHTML.val(), +$LastNumberHTML.val(), random);
 
-                this.practiceRun($NumberHTML, MnemomicImages);
+                this.practiceRun(MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();
@@ -79,7 +82,7 @@ module mnemonicApp {
                     ErrorMessage: e.message
                 };
 
-                $.get('../../Templates/error.template', (template: string) => {
+                $.get(this.templates.error, (template: string) => {
                     this.renderContent(template, this.playground, errorObject);
                 });
             };

@@ -12,17 +12,28 @@ module mnemonicApp {
             Timer: "Laddar..."
         }
 
+        private startpageObject = {
+            firstItemID: "firstMonth",
+            firstItemDescription: "Första månaden",
+            lastItemID: "lastMonth",
+            lastItemDescription: "Sista månaden"
+        }
+
         constructor() {
             super();
             this.main = $("main");
             this.lead = $("p.lead");
             this.mnemonicImages = new mnemonicData;
+
+            this.templates.startpage = '../../Templates/Shared/startpageDropdown.template';
+            this.templates.info = '../../Templates/Months/info.template';
         }
 
         init() {
             try {
-                this.renderStartpage('../../Templates/Months/startpage.template', () => {
-                    this.setupDropdownMenus(["firstMonth", "lastMonth"], this.mnemonicImages.getMonthsImages());
+                this.renderStartpage(this.templates.startpage, this.startpageObject, () => {
+                    this.renderInfo(this.templates.info, null);
+                    this.setupDropdownMenus([this.startpageObject.firstItemID, this.startpageObject.lastItemID], this.mnemonicImages.getMonthsImages());
                     this.playground = $("#playground");
                     this.playgroundSetup();
                 });
@@ -32,12 +43,11 @@ module mnemonicApp {
         }
 
         private playgroundSetup() {
-            this.renderPlayground('../../Templates/Months/practice.template', this.practiceObject, () => { this.practiceSetup(); });
+            this.renderPlayground(this.templates.practice, this.practiceObject, () => { this.practiceSetup(); });
         }
 
         private practiceSetup() {
             try {
-                const $MonthHTML: JQuery = $("#Month");
                 const $FirstMonthHTML: JQuery = $("#firstMonth");
                 const $LastMonthHTML: JQuery = $("#lastMonth");
                 const $Mode: JQuery = $("#mode");
@@ -60,7 +70,7 @@ module mnemonicApp {
 
                 var MnemomicImages: string[][] = this.mnemonicImages.getMonthsImages(+$FirstMonthHTML.val(), +$LastMonthHTML.val(), random);
 
-                this.practiceRun($MonthHTML, MnemomicImages);
+                this.practiceRun(MnemomicImages);
             }
             catch (e) {
                 this.playground.empty();
@@ -69,7 +79,7 @@ module mnemonicApp {
                     ErrorMessage: e.message
                 };
 
-                $.get('../../Templates/error.template', (template: string) => {
+                $.get(this.templates.error, (template: string) => {
                     this.renderContent(template, this.playground, errorObject);
                 });
             };
