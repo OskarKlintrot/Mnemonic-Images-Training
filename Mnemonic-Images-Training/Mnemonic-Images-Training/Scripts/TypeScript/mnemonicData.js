@@ -1428,3 +1428,4 @@ var mnemonicApp;
     })();
     mnemonicApp.mnemonicData = mnemonicData;
 })(mnemonicApp || (mnemonicApp = {}));
+//# sourceMappingURL=mnemonicData.js.map
