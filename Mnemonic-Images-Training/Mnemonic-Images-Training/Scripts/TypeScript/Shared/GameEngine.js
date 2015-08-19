@@ -55,7 +55,8 @@ var mnemonicApp;
                 _this.renderContent(template, _this.playground, { Average: "Genomsnittslig tid: " + average + " sek" });
                 $.each(MnemomicImages, function (key, value) {
                     $.get('../../Templates/summaryElement.template', function (template) {
-                        var timeString = _this.result[key] === null ? " - " : Math.round(_this.result[key]) + " sek";
+                        var timeString = _this.result[key] === null ? " - " :
+                            _this.result[key].toString().length === 1 ? _this.result[key] + ".0 sek" : _this.result[key] + " sek";
                         _this.renderContent(template, $("#Result").children("table").children("tbody"), { Element: value[0], Time: timeString });
                     });
                 });
@@ -165,7 +166,7 @@ var mnemonicApp;
         ;
         GameEngine.prototype.resultTimer = function (index, fail) {
             if (fail === void 0) { fail = false; }
-            var passedTime = new Date().getSeconds() - this.timer.getSeconds();
+            var passedTime = Math.round((+new Date() - +this.timer) / 100) / 10;
             if (this.result.length === index && !fail)
                 this.result[index] = passedTime > 0 ? passedTime : 0;
             else if (fail && index === this.result.length)

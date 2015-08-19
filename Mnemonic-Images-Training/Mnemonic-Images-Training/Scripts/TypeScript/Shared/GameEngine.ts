@@ -61,7 +61,8 @@ module mnemonicApp {
                 this.renderContent(template, this.playground, { Average: "Genomsnittslig tid: " + average + " sek" });
                 $.each(MnemomicImages, (key, value) => {
                     $.get('../../Templates/summaryElement.template', (template: string) => {
-                        var timeString: string = this.result[key] === null ? " - " : Math.round(this.result[key]) + " sek";
+                        var timeString: string = this.result[key] === null ? " - " : 
+                            this.result[key].toString().length === 1 ? this.result[key] + ".0 sek" : this.result[key] + " sek";
                         this.renderContent(template, $("#Result").children("table").children("tbody"), { Element: value[0], Time: timeString });
                     });
                 });
@@ -184,7 +185,7 @@ module mnemonicApp {
         };
 
         private resultTimer(index: number, fail: boolean = false) {
-            var passedTime: number = new Date().getSeconds() - this.timer.getSeconds();
+            var passedTime: number = Math.round((+new Date() - +this.timer) / 100) / 10;
             if (this.result.length === index && !fail)
                 this.result[index] = passedTime > 0 ? passedTime : 0;
             else if (fail && index === this.result.length)
