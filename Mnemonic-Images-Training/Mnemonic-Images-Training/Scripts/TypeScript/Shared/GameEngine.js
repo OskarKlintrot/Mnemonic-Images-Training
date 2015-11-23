@@ -70,7 +70,7 @@ var mnemonicApp;
                 _this.renderContent(template, _this.playground, { Average: "Genomsnittslig tid: " + average + " sek" });
                 $.each(MnemomicImages, function (key, value) {
                     $.get(_this.templates.summaryElement, function (template) {
-                        var timeString = _this.result[key] === null ? value :
+                        var timeString = _this.result[key] === null ? value[1] :
                             _this.result[key].toString().length === 1 ? _this.result[key] + ".0 sek" : _this.result[key] + " sek";
                         _this.renderContent(template, $("#Result").children("table").children("tbody"), { Element: value[0], Time: timeString });
                     });
@@ -229,4 +229,3 @@ var mnemonicApp;
     })();
     mnemonicApp.GameEngine = GameEngine;
 })(mnemonicApp || (mnemonicApp = {}));
-//# sourceMappingURL=GameEngine.js.map

@@ -77,7 +77,7 @@ module mnemonicApp {
                 this.renderContent(template, this.playground, { Average: "Genomsnittslig tid: " + average + " sek" });
                 $.each(MnemomicImages, (key, value) => {
                     $.get(this.templates.summaryElement, (template: string) => {
-                        var timeString: string = this.result[key] === null ? value : 
+                        var timeString: string = this.result[key] === null ? value[1]  : 
                             this.result[key].toString().length === 1 ? this.result[key] + ".0 sek" : this.result[key] + " sek";
                         this.renderContent(template, $("#Result").children("table").children("tbody"), { Element: value[0], Time: timeString });
                     });
