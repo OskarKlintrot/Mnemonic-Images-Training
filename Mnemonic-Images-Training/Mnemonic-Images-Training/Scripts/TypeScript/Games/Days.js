@@ -85,3 +85,4 @@ var mnemonicApp;
     })(mnemonicApp.GameEngine);
     mnemonicApp.Days = Days;
 })(mnemonicApp || (mnemonicApp = {}));
+//# sourceMappingURL=Days.js.map
